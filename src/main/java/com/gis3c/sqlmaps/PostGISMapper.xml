@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="PostGISSql">
+	<resultMap id="GeoCityResultMap" type="java.util.HashMap">
+        <result property="geom" column="geom" javaType="Geometry"/>
+    </resultMap>
+	<!--创建空间表通用方法-->
+    <update id="commonCreateTable">
+    	CREATE TABLE ${tableName}
+    	<foreach item="item" index="index" collection="columnList" open="(" separator=",">
+    		<choose>
+    			<when test='item.typeCode == 1'>
+    				${item.columnName} numeric
+    			</when>
+    			<when test='item.typeCode == 2'>
+    				${item.columnName} NUMBER
+    			</when>
+    			<when test='item.typeCode == 3'>
+    				${item.columnName} character varying(254)
+    			</when>
+    			<when test='item.typeCode == 91'>
+    				geo geometry(POINT,4326)
+    			</when>
+    			<when test='item.typeCode == 911'>
+    				geo geometry(MULTIPOINT,4326)
+    			</when>
+    			<when test='item.typeCode == 92'>
+    				geo geometry(LINESTRING,4326)
+    			</when>
+    			<when test='item.typeCode == 922'>
+    				geo geometry(MULTILINESTRING,4326)
+    			</when>
+    			<when test='item.typeCode == 93'>
+    				geo geometry(POLYGON,4326)
+    			</when>
+    			<when test='item.typeCode == 933'>
+    				geo geometry(MULTIPOLYGON,4326)
+    			</when>
+    		</choose>
+    	</foreach>
+    	,CONSTRAINT fid_pkey PRIMARY KEY (fid));
+    </update>
+    
+    <!--创建空间索引-->
+    <update id="createSpatialIndex">
+    	CREATE INDEX ${spatialIndexName}
+  			ON ${tableName}
+  			USING gist
+  			($(geometryColumn));
+    </update>
+    
+    <!--查询表是否存在，返回表个数-->
+    <select id="tableCount" parameterType="java.lang.String" resultType="java.lang.Integer">
+    	select count(1) from pg_class where relname in (lower(#{tableName,jdbcType=VARCHAR}),upper(#{tableName,jdbcType=VARCHAR}));
+    </select>
+    
+    <!-- 删除空间表通用方法 -->
+	<delete id="commonTableRemove" parameterType="java.lang.String">  
+        drop table ${_parameter};
+    </delete>
+    
+    <!-- 插入空间信息通用方法 -->
+    <insert id="commonInsertBatch">
+    	insert into ${tableName}
+    	<foreach item="item" index="index" collection="keyList" open="(" separator="," close=")values">
+    		${item}
+  		</foreach>
+  		<foreach collection="featuresList" item="featureValues" index="index" separator="," >
+  			<foreach item="featureValue" index="featureIndex" collection="featureValues" open=" (" separator="," close=")">
+				<choose>
+					<when test='featureValue.key == "fid"'>
+						#{featureValue.value,jdbcType=INTEGER}
+					</when>
+					<when test='featureValue.key == "geo"'>
+						st_geomfromText(#{featureValue.value,jdbcType=VARCHAR},4326)
+					</when>
+					<otherwise>
+						#{featureValue.value,jdbcType=VARCHAR}
+            		</otherwise>
+				</choose>
+  			</foreach>
+  		</foreach>
+    </insert>
+    
+    <insert id="commonInsert">
+    	insert into ${tableName}
+    	<foreach item="item" index="index" collection="keyList" open="(" separator="," close=")">
+    		${item}
+  		</foreach>
+		<foreach item="featureValue" index="index" collection="valueList" open=" values(" separator="," close=")">
+			<choose>
+				<when test='featureValue.key == "fid"'>
+					#{featureValue.value,jdbcType=INTEGER}
+				</when>
+				<when test='featureValue.key == "geo"'>
+					st_geomfromText(#{featureValue.value,jdbcType=VARCHAR},4326)
+				</when>
+				<otherwise>
+					#{featureValue.value,jdbcType=VARCHAR}
+            	</otherwise>
+			</choose>
+  		</foreach>
+    </insert>
+    
+    <!--查询表中字段信息-->
+    <select id="tableColumns" parameterType="java.lang.String" resultType="java.util.HashMap">
+    	select column_name,data_type
+   			from information_schema.columns where table_name = #{tableName,jdbcType=INTEGER} and table_schema='public';
+    </select>
+    
+    <!-- 清空表 --> 
+	<delete id="clearSpatialTable" parameterType="java.lang.String">  
+        delete from ${_parameter}
+    </delete>
+    
+    <select id="allCity" resultMap="GeoCityResultMap">
+    <!--
+    	select t.name,t.code,t.geom as geom from geocity t
+    	
+    	select t.name,t.code,ST_AsText(t.geom) as geom from geocountry t 
+    		where ST_Within(ST_GeometryFromText(#{geom,javaType=Geometry}),t.geom);
+    -->
+    	select t.stationid,t.subtype,t.geom as geom from station t where ST_Intersects(
+			ST_Buffer(
+				Geography(#{geom,javaType=Geometry}),1000
+			),
+			t.geom
+		)
+		
+    </select>
+</mapper>

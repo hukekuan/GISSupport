@@ -29,11 +29,10 @@
     <context:component-scan base-package="com.gis3c.*"/>
 
     <bean id="dataSource_GIS" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
-        <property name="driverClassName" value="${gis.driverClassName}"/>
-        <property name="url" value="${gis.url}"/>
-        <property name="username" value="${gis.username}"/>
-        <property name="password" value="${gis.password}"/>
-        <property name="accessToUnderlyingConnectionAllowed" value="true"/>
+        <property name="driverClassName" value="${postgis.driverClassName}"/>
+        <property name="url" value="${postgis.url}"/>
+        <property name="username" value="${postgis.username}"/>
+        <property name="password" value="${postgis.password}"/>
     </bean>
     <bean id="sqlSessionFactory_GIS" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource_GIS"/>
