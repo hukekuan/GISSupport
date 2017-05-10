@@ -93,7 +93,7 @@
     <dependency>
       <groupId>org.postgresql</groupId>
       <artifactId>postgresql</artifactId>
-      <version>9.4.1212.jre7</version>
+      <version>42.1.0</version>
     </dependency>
     <dependency>
       <groupId>com.oracle</groupId>
