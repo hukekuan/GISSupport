@@ -1,7 +1,6 @@
 package com.gis3c.service.impl;
 
 import com.gis3c.dao.HelloDao;
-import com.gis3c.demo.Hello;
 import com.gis3c.service.HelloService;
 import org.springframework.stereotype.Service;
 

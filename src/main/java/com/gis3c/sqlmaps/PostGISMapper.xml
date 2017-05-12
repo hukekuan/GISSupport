@@ -19,22 +19,22 @@
     				${item.columnName} character varying(254)
     			</when>
     			<when test='item.typeCode == 91'>
-    				geo geometry(POINT,4326)
+					${item.columnName} geometry(POINT,4326)
     			</when>
     			<when test='item.typeCode == 911'>
-    				geo geometry(MULTIPOINT,4326)
+					${item.columnName} geometry(MULTIPOINT,4326)
     			</when>
     			<when test='item.typeCode == 92'>
-    				geo geometry(LINESTRING,4326)
+					${item.columnName} geometry(LINESTRING,4326)
     			</when>
     			<when test='item.typeCode == 922'>
-    				geo geometry(MULTILINESTRING,4326)
+					${item.columnName} geometry(MULTILINESTRING,4326)
     			</when>
     			<when test='item.typeCode == 93'>
-    				geo geometry(POLYGON,4326)
+					${item.columnName} geometry(POLYGON,4326)
     			</when>
     			<when test='item.typeCode == 933'>
-    				geo geometry(MULTIPOLYGON,4326)
+					${item.columnName} geometry(MULTIPOLYGON,4326)
     			</when>
     		</choose>
     	</foreach>

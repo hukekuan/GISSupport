@@ -14,6 +14,12 @@ public class PostGISServiceImpl implements PostGISService {
 
     public void CommonCreateTable(
             String tableName,String geometryColumn,List<Map<String,Object>> columns){
+        if(tableName == null || "".equals(tableName)
+                || geometryColumn == null || "".equals(geometryColumn)
+                || columns == null || columns.size() == 0){
+            throw new IllegalArgumentException("参数错误");
+        }
+
         Map<String,Object> tableStructure = new HashMap<>();
         tableStructure.put("tableName",tableName);
         tableStructure.put("columnList",columns);
@@ -24,6 +30,6 @@ public class PostGISServiceImpl implements PostGISService {
         SpatialIndexParam.put("geometryColumn",geometryColumn);
 
         postGISDao.CommonCreateTable(tableStructure);
-        postGISDao.CreateSpatialIndex(SpatialIndexParam);
+        postGISDao.CreateSpatialIndex(tableName);
     }
 }
