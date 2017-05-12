@@ -46,7 +46,7 @@
     	CREATE INDEX ${spatialIndexName}
   			ON ${tableName}
   			USING gist
-  			($(geometryColumn));
+  			(${geometryColumn});
     </update>
     
     <!--查询表是否存在，返回表个数-->
@@ -114,18 +114,11 @@
     </delete>
     
     <select id="allCity" resultMap="GeoCityResultMap">
-    <!--
-    	select t.name,t.code,t.geom as geom from geocity t
-    	
-    	select t.name,t.code,ST_AsText(t.geom) as geom from geocountry t 
-    		where ST_Within(ST_GeometryFromText(#{geom,javaType=Geometry}),t.geom);
-    -->
     	select t.stationid,t.subtype,t.geom as geom from station t where ST_Intersects(
 			ST_Buffer(
 				Geography(#{geom,javaType=Geometry}),1000
 			),
 			t.geom
 		)
-		
     </select>
 </mapper>

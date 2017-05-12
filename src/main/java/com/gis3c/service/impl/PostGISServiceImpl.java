@@ -30,6 +30,6 @@ public class PostGISServiceImpl implements PostGISService {
         SpatialIndexParam.put("geometryColumn",geometryColumn);
 
         postGISDao.CommonCreateTable(tableStructure);
-        postGISDao.CreateSpatialIndex(tableName);
+        postGISDao.CreateSpatialIndex(tableName,geometryColumn);
     }
 }

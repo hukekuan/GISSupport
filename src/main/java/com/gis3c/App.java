@@ -2,7 +2,6 @@ package com.gis3c;
 
 import com.gis3c.service.HelloService;
 import com.gis3c.service.PostGISService;
-import org.apache.commons.collections.map.HashedMap;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import java.io.IOException;
