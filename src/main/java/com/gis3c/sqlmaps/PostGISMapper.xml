@@ -4,6 +4,11 @@
 	<resultMap id="GeoCityResultMap" type="java.util.HashMap">
         <result property="geom" column="geom" javaType="Geometry"/>
     </resultMap>
+	<resultMap id="geoCity" type="com.gis3c.entity.GeoCity">
+		<result column="code" property="code" />
+		<result column="name" property="name" />
+		<result column="geom" property="geom" javaType="Geometry" />
+	</resultMap>
 	<!--创建空间表通用方法-->
     <update id="commonCreateTable">
     	CREATE TABLE ${tableName}
@@ -113,12 +118,9 @@
         delete from ${_parameter}
     </delete>
     
-    <select id="allCity" resultMap="GeoCityResultMap">
-    	select t.stationid,t.subtype,t.geom as geom from station t where ST_Intersects(
-			ST_Buffer(
-				Geography(#{geom,javaType=Geometry}),1000
-			),
-			t.geom
-		)
+    <select id="allCity" resultMap="geoCity">
+    	select t."CODE" as code,t."NAME" as name, t.geom
+    	from geocity t;
+    	--where t."CODE"='370300';
     </select>
 </mapper>

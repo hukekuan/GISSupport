@@ -1,12 +1,14 @@
 package com.gis3c.dao.impl;
 
 import com.gis3c.dao.PostGISDao;
+import com.gis3c.entity.GeoCity;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.stereotype.Repository;
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Repository
@@ -30,5 +32,10 @@ public class PostGISDaoImpl extends SqlSessionDaoSupport implements PostGISDao {
         param.put("geometryColumn",geometryColumn);
         param.put("spatialIndexName","sidx_" + tableName +"_" + geometryColumn);
         getSqlSession().update("PostGISSql.createSpatialIndex",param);
+    }
+
+    @Override
+    public List<GeoCity> AllCities(){
+        return getSqlSession().selectList("PostGISSql.allCity");
     }
 }

@@ -1,6 +1,7 @@
 package com.gis3c.service.impl;
 
 import com.gis3c.dao.PostGISDao;
+import com.gis3c.entity.GeoCity;
 import com.gis3c.service.PostGISService;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
@@ -31,5 +32,10 @@ public class PostGISServiceImpl implements PostGISService {
 
         postGISDao.CommonCreateTable(tableStructure);
         postGISDao.CreateSpatialIndex(tableName,geometryColumn);
+    }
+
+    @Override
+    public List<GeoCity> AllCities(){
+        return postGISDao.AllCities();
     }
 }
