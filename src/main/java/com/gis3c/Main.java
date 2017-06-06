@@ -1,8 +1,11 @@
 package com.gis3c;
 
 import com.gis3c.entity.C3Map;
-import org.apache.commons.dbcp.datasources.SharedPoolDataSource;
-import org.geotools.data.FeatureSource;
+import com.gis3c.entity.GeoCity;
+import com.gis3c.service.PostGISService;
+import no.ecc.vectortile.VectorTileDecoder;
+import no.ecc.vectortile.VectorTileEncoder;
+import org.apache.commons.collections.map.HashedMap;
 import org.geotools.data.FileDataStore;
 import org.geotools.data.FileDataStoreFinder;
 import org.geotools.data.shapefile.ShapefileDataStore;
@@ -14,17 +17,20 @@ import org.geotools.styling.SLD;
 import org.geotools.styling.SLDParser;
 import org.geotools.styling.Style;
 import org.geotools.styling.StyleFactory;
-import org.geotools.swing.JMapFrame;
 import org.geotools.swing.data.JFileDataStoreChooser;
-import org.geotools.swing.dialog.JExceptionReporter;
-import org.geotools.swing.styling.JSimpleStyleDialog;
-import org.opengis.feature.simple.SimpleFeatureType;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.nio.charset.Charset;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Main {
+    public static ApplicationContext ContextInit(){
+        return new ClassPathXmlApplicationContext("classpath:spring-config.xml");
+    }
     public static StyleFactory styleFactory = CommonFactoryFinder.getStyleFactory();
 //    public static Style createStyle(File file, FeatureSource featureSource) {
 //        File sld = toSLDFile(file);
@@ -61,7 +67,7 @@ public class Main {
 //        }
 //        return null;
 //    }
-    public static void main(String[] args) throws IOException {
+    public static void StyleTest()throws IOException{
         File file = JFileDataStoreChooser.showOpenFile("shp",null);
         if(file == null){
             return;
@@ -83,7 +89,39 @@ public class Main {
         map.addLayer(layer);
         map.saveImage("D://mapimage//1.jpg",256);
         System.out.println("image has saved");
-//        JMapFrame.showMap(map);
+    }
+    public static void copy(Reader in,Writer out) throws IOException {
+        int c = -1;
+        while((c = in.read()) != -1) {
+            out.write(c);
+        }
+    }
+    public static void VectorTilesTest()throws IOException{
+        ApplicationContext context =ContextInit();
+        PostGISService postGISService = (PostGISService) context.getBean("postGISService");
+        List<GeoCity> geoCities = postGISService.AllCities();
+
+        VectorTileEncoder encoder = new VectorTileEncoder();
+        VectorTileDecoder d = new VectorTileDecoder();
+        byte[] encoded;
+        geoCities.forEach(city -> {
+            Map<String,String> cityAttr = new HashMap<>();
+            cityAttr.put("name",city.getName());
+            cityAttr.put("code",city.getCode());
+            encoder.addFeature("city",cityAttr,city.getGeom());
+        });
+        encoded = encoder.encode();
+
+        Reader in = new FileReader("C:\\Users\\Administrator\\Desktop\\0.vector.pbf");
+        StringWriter out = new StringWriter();
+        copy(in,out);
+
+//        System.out.println(out.toString());
+        System.out.println(d.decode(out.toString().getBytes()));
+    }
+    public static void main(String[] args) throws IOException {
+        VectorTilesTest();
+        //VectorTilesTest();
     }
 
 

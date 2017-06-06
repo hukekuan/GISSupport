@@ -119,7 +119,7 @@
     </delete>
     
     <select id="allCity" resultMap="geoCity">
-    	select t."CODE" as code,t."NAME" as name, t.geom
+    	select t.code as code,t.name as name, t.geom
     	from geocity t;
     	--where t."CODE"='370300';
     </select>
