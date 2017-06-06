@@ -5,6 +5,7 @@ import com.sun.media.jai.codec.ImageEncoder;
 import com.sun.media.jai.codec.PNGEncodeParam;
 import org.geotools.geometry.jts.ReferencedEnvelope;
 import org.geotools.map.MapContent;
+import org.geotools.map.MapViewport;
 import org.geotools.renderer.GTRenderer;
 import org.geotools.renderer.lite.StreamingRenderer;
 
@@ -53,12 +54,18 @@ public class C3Map extends MapContent {
     public void saveImage(final String file,final int imageWidth) throws IOException {
         GTRenderer renderer = new StreamingRenderer();
         renderer.setMapContent(this);
-
+        MapViewport mapViewport = this.getViewport();
         ReferencedEnvelope mapBounds
-                = new ReferencedEnvelope(117.45335889533,121.20518244635,35.753480445714,37.557981231236,this.getCoordinateReferenceSystem());
+                = new ReferencedEnvelope(
+                118.02532161784,
+                118.08394386082,
+                36.846653667618,
+                36.818458342844,
+                    this.getCoordinateReferenceSystem()
+                );
 //                = this.getMaxBounds();
 
-
+        mapViewport.setBounds(mapBounds);
         double heightToWidth = mapBounds.getSpan(1)/mapBounds.getSpan(0);
         Rectangle imageBounds
 //                = new Rectangle(0,0,imageWidth, (int) Math.round(imageWidth*heightToWidth));
