@@ -108,20 +108,18 @@ public class Main {
             Map<String,String> cityAttr = new HashMap<>();
             cityAttr.put("name",city.getName());
             cityAttr.put("code",city.getCode());
-            encoder.addFeature("city",cityAttr,city.getGeom());
+//            encoder.addFeature("city",cityAttr,city.getGeom());
         });
         encoded = encoder.encode();
 
-        Reader in = new FileReader("C:\\Users\\Administrator\\Desktop\\0.vector.pbf");
-        StringWriter out = new StringWriter();
-        copy(in,out);
-
-//        System.out.println(out.toString());
-        System.out.println(d.decode(out.toString().getBytes()));
+        System.out.println(new String(encoded, "utf8"));
+        try(FileOutputStream fos = new FileOutputStream("/home/hukekuan/0.vector.pbf",true)){
+            fos.write(encoded);
+            fos.flush();
+        }
     }
     public static void main(String[] args) throws IOException {
         VectorTilesTest();
-        //VectorTilesTest();
     }
 
 

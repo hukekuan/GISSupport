@@ -1,27 +1,13 @@
 package com.gis3c.entity;
 
-import com.vividsolutions.jts.geom.Polygon;
+import com.gis3c.entity.spatial.BaseFeature;
+import com.vividsolutions.jts.geom.Geometry;
+import com.vividsolutions.jts.geom.MultiPolygon;
 
-public class GeoCity {
+public class GeoCity extends BaseFeature{
     private String code;
     private String name;
-    private Polygon geom;
-
-    public boolean isDefaut(){
-        boolean defaulted = false;
-        if(this.code.contains("370")){
-            defaulted = true;
-        }
-        return defaulted;
-    }
-
-    public boolean isZB(){
-        boolean zb = false;
-        if("370300".equals(this.getCode())){
-            zb = true;
-        }
-        return zb;
-    }
+    private Geometry geometry;
 
     public String getCode() {
         return code;
@@ -37,13 +23,5 @@ public class GeoCity {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Polygon getGeom() {
-        return geom;
-    }
-
-    public void setGeom(Polygon geom) {
-        this.geom = geom;
     }
 }

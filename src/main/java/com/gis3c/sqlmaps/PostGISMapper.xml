@@ -7,7 +7,7 @@
 	<resultMap id="geoCity" type="com.gis3c.entity.GeoCity">
 		<result column="code" property="code" />
 		<result column="name" property="name" />
-		<result column="geom" property="geom" javaType="Geometry" />
+		<result column="geom" property="geometry" />
 	</resultMap>
 	<!--创建空间表通用方法-->
     <update id="commonCreateTable">
