@@ -1,4 +1,4 @@
-package com.c3gis.spatial.entity;
+package com.gis3c.spatial.entity.geometry;
 
 
 /**

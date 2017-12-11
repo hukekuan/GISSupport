@@ -1,8 +1,9 @@
-package com.c3gis.spatial.entity;
+package com.gis3c.spatial.entity;
 
+import com.gis3c.spatial.entity.feature.BaseFeature;
 import com.vividsolutions.jts.geom.Geometry;
 
-public class GeoCity extends BaseFeature{
+public class GeoCity extends BaseFeature {
     private String code;
     private String name;
     private Geometry geometry;

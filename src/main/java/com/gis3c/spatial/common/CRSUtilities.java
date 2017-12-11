@@ -1,4 +1,4 @@
-package com.c3gis.spatial.common;/**
+package com.gis3c.spatial.common;/**
  * Created by hukekuan on 17-7-10.
  */
 
@@ -15,7 +15,7 @@ import org.opengis.referencing.crs.CoordinateReferenceSystem;
  * @Description 空间坐标系相关方法
  * @date 2017-07-10 下午6:31
  */
-public class CRSUtil {
+public class CRSUtilities {
     private final static FilterFactory2 ff = CommonFactoryFinder.getFilterFactory2(null);
 
     public static CoordinateReferenceSystem GetCRSFromSRID(String sridNumber)

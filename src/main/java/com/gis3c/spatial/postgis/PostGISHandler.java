@@ -1,4 +1,4 @@
-package com.c3gis.spatial.postgis;
+package com.gis3c.spatial.postgis;
 
 import java.io.IOException;
 import java.sql.CallableStatement;

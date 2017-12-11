@@ -1,4 +1,4 @@
-package com.c3gis.spatial.entity;
+package com.gis3c.spatial.entity.feature;
 
 import com.vividsolutions.jts.geom.Geometry;
 import org.geotools.data.DataUtilities;
@@ -35,7 +35,9 @@ public class BaseFeature {
         this.geometry = geometry;
     }
 
-
+    /**
+     * 获取所有字段信息
+     */
     private List<Field> AllFieldes(){
         List<Field> fieldList = new ArrayList<>();
 
