@@ -1,5 +1,7 @@
-package com.gis3c.spatial;
+package com.gis3c;
 
+import com.gis3c.ol.service.MapService;
+import com.gis3c.ol.service.impl.MapServiceImpl;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -12,6 +14,7 @@ public class App {
     }
     public static void main(String[] args) {
         ApplicationContext context = ApplicationInit();
-        System.out.println("OK");
+        MapService mapService = (MapService) context.getBean(MapService.class);
+        System.out.println(mapService.findAllList());
     }
 }

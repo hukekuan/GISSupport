@@ -39,6 +39,11 @@
     <bean id="sqlSessionFactory_sys" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource_sys"/>
         <property name="configLocation" value="classpath:sql-map-config-mybatis.xml"/>
-        <!--<property name="mapperLocations" value="classpath:mappings/ol/*.xml"/>-->
+        <property name="mapperLocations" value="classpath:mappings/ol/*.xml"/>
+    </bean>
+    <bean id="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory_sys" />
+        <property name="basePackage" value="com.gis3c"/>
+        <property name="annotationClass" value="com.gis3c.common.persistence.annotation.C3BatisDao"/>
     </bean>
 </beans>
