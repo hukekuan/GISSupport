@@ -5,13 +5,30 @@ create table c3gis_ol_map(
    view    varchar(50) not null,
    controls    varchar(50) ARRAY,
    pixelRatio     integer,
-   interactions varchar(50) ARRAY,,
+   interactions varchar(50) ARRAY,
    layers    varchar(50) ARRAY,
    logo    boolean,
    overlays    varchar(50) ARRAY,
    description varchar(50)
 );
 
+--视图图层
+create table c3gis_ol_view(
+   viewid    varchar(50) not null PRIMARY KEY,
+   viewname    varchar(50) not null,
+   center    decimal ARRAY[2],
+   extent decimal ARRAY[4],
+   maxresolution    decimal,
+   minresolution    decimal,
+   maxzoom    int,
+   minzoom    int,
+   zoom    int,
+   projection    varchar(50),
+   resolution    decimal,
+   resolutions    decimal ARRAY,
+   rotation    decimal,
+   description varchar(50)
+);
 
 --样式类型枚举值
 CREATE TYPE c3gis_ol_vectorstyletype AS ENUM('entity', 'function');
@@ -71,10 +88,12 @@ create table c3gis_ol_source_tilesupermaprest(
 );
 
 --矢量数据
-create table c3gis_ol_source_tilearcgisrest(
+create table c3gis_ol_source_vector(
    sourceid    varchar(50) not null PRIMARY KEY,
    sourcename    varchar(50) not null,
-   url    varchar(50) not null,
+   logo boolean,
+   url    varchar(50),
+   useSpatialIndex boolean,
    wrapX    boolean,
    description varchar(50)
 );
