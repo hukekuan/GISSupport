@@ -4,11 +4,13 @@ import org.apache.ibatis.type.BaseTypeHandler;
 import org.apache.ibatis.type.JdbcType;
 import org.apache.ibatis.type.TypeException;
 
+import java.math.BigDecimal;
 import java.sql.*;
 
 /**
  * Created by hukekuan on 2017/12/15.
  */
+
 public class ArrayTypeHandler extends BaseTypeHandler<Object[]> {
     private static final String TYPE_NAME_VARCHAR = "varchar";
     private static final String TYPE_NAME_BOOLEAN = "boolean";
@@ -32,10 +34,12 @@ public class ArrayTypeHandler extends BaseTypeHandler<Object[]> {
         if (typeName == null) {
             throw new TypeException("ArrayTypeHandler parameter typeName error, your type is " + parameter.getClass().getName());
         }
-        System.out.println("======= "+ typeName +" =======");
+
         Array array = ps.getConnection().createArrayOf(typeName, parameter);
         ps.setArray(i, array);
     }
+
+
 
     @Override
     public Object[] getNullableResult(ResultSet rs, String columnName) throws SQLException {

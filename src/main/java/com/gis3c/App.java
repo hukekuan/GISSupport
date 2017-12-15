@@ -19,20 +19,25 @@ public class App {
     public static void main(String[] args) {
         ApplicationContext context = ApplicationInit();
         ViewService viewService = context.getBean(ViewService.class);
-        View view = new View();
-        String id = UUID.randomUUID().toString();
 
-        view.setViewId(id);
-        System.out.println(view.getViewId());
-        view.setViewName("测试视图");
-        view.setCenter(new Double[]{117.089151, 36.738693});
-        view.setProjection("EPSG:4326");
-        view.setMinZoom(8);
-        view.setMaxZoom(18);
-        view.setZoom(9);
+        View view = viewService.findeViewById("a20d41b4-208d-47da-8c02-e7023fc4e9f4");
+        System.out.println("["+ ((Double[])view.getCenter())[0] + ", " + ((Double[])view.getCenter())[1] + "]");
 
-        viewService.insertView(view);
-        System.out.println("插入成功");
+
+//        View view = new View();
+//        String id = UUID.randomUUID().toString();
+//
+//        view.setViewId(id);
+//        System.out.println(view.getViewId());
+//        view.setViewName("测试视图");
+//        view.setCenter(new Double[]{117.089151, 36.738693});
+//        view.setProjection("EPSG:4326");
+//        view.setMinZoom(8);
+//        view.setMaxZoom(18);
+//        view.setZoom(9);
+//
+//        viewService.insertView(view);
+//        System.out.println("插入成功");
 
 //        MapService mapService = context.getBean(MapService.class);
 //        Map map = mapService.findAllList().get(0);

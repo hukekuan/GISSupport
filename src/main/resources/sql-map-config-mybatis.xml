@@ -45,9 +45,9 @@
         <typeHandler handler="com.gis3c.common.OracleSpatialHandler" javaType="Geometry" />
     </typeHandlers>-->
     <typeAliases>
-        <typeAlias type="java.lang.Object" alias="Object" />
+        <typeAlias type="java.lang.Object" alias="ObjectArray" />
     </typeAliases>
     <typeHandlers>
-        <typeHandler handler="com.gis3c.spatial.postgis.ArrayTypeHandler" javaType="Object" />
+        <typeHandler handler="com.gis3c.spatial.postgis.ArrayTypeHandler" javaType="ObjectArray" />
     </typeHandlers>
 </configuration>

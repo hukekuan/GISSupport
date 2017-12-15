@@ -2,24 +2,23 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gis3c.ol.dao.ViewDao">
 	<resultMap id="viewResult" type="com.gis3c.ol.entity.View">
-		<result property="viewId" column="viewid"/>
+		<result property="viewId" column="viewid" />
 		<result property="viewName" column="viewname" />
-		<result property="center" column="center" javaType="Object"/>
-		<result property="extent" column="extent" javaType="Object"/>
-		<result property="maxResolution" column="maxresolution" />
+		<result property="center" column="center" javaType="ObjectArray"/>
+		<result property="extent" column="extent" javaType="ObjectArray"/>
 		<result property="minResolution" column="minresolution" />
 		<result property="maxZoom" column="maxzoom" />
 		<result property="minZoom" column="minzoom" />
 		<result property="zoom" column="zoom" />
 		<result property="projection" column="projection" />
 		<result property="resolution" column="resolution" />
-		<result property="resolutions" column="resolutions" javaType="Object"/>
+		<result property="resolutions" column="resolutions" javaType="ObjectArray"/>
 		<result property="rotation" column="rotation" />
 		<result property="description" column="description" />
 	</resultMap>
 	
     <sql id="viewColumns">
-		v.viewid
+		viewid
 		, v.viewname
 		, v.center
 		, v.extent
@@ -39,7 +38,7 @@
 		SELECT
 		<include refid="viewColumns"/>
 		FROM c3gis_ol_view v
-		WHERE v.viewid = #{viewId};
+		WHERE v.viewid = #{viewId, javaType=java.lang.String};
 	</select>
 
 	<select id="findeViewByName" resultMap="viewResult">
@@ -69,8 +68,8 @@
 		VALUES(
 		#{viewId}
 		, #{viewName}
-		, #{center}
-		, #{extent}
+		, #{center, javaType=ObjectArray}
+		, #{extent, javaType=ObjectArray}
 		, #{maxResolution}
 		, #{minResolution}
 		, #{maxZoom}
@@ -78,7 +77,7 @@
 		, #{zoom}
 		, #{projection}
 		, #{resolution}
-		, #{resolutions}
+		, #{resolutions, javaType=ObjectArray}
 		, #{rotation}
 		, #{description});
 	</insert>
