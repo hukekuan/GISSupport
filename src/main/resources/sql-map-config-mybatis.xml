@@ -5,4 +5,18 @@
     <settings>  
         <setting name="cacheEnabled" value="true"/>
     </settings>
+
+    <!--
+    <typeAliases>
+        <typeAlias type="com.vividsolutions.jts.geom.Geometry" alias="Geometry" />
+    </typeAliases>
+    <typeHandlers>
+        <typeHandler handler="com.gis3c.common.OracleSpatialHandler" javaType="Geometry" />
+    </typeHandlers>-->
+    <typeAliases>
+        <typeAlias type="java.lang.Object" alias="Object" />
+    </typeAliases>
+    <typeHandlers>
+        <typeHandler handler="com.gis3c.spatial.postgis.ArrayTypeHandler" javaType="Object" />
+    </typeHandlers>
 </configuration>

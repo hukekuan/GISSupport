@@ -6,12 +6,13 @@ package com.gis3c.ol.entity;
 public class Map {
     private String mapId;
     private String mapName;
-    private String[] controls;
-    private Integer pixelRatio;
-    private String[] interactions;
     private String view;
-    private String[] layers;
+    private String[][] controls;
+    private Integer pixelRatio;
+    private String[][] interactions;
+    private String[][] layers;
     private Boolean logo = Boolean.FALSE;
+    private String[][] overlays;
     private String description;
 
     public String getMapId() {
@@ -30,14 +31,6 @@ public class Map {
         this.mapName = mapName;
     }
 
-    public String[] getControls() {
-        return controls;
-    }
-
-    public void setControls(String[] controls) {
-        this.controls = controls;
-    }
-
     public Integer getPixelRatio() {
         return pixelRatio;
     }
@@ -46,11 +39,11 @@ public class Map {
         this.pixelRatio = pixelRatio;
     }
 
-    public String[] getInteractions() {
+    public String[][] getInteractions() {
         return interactions;
     }
 
-    public void setInteractions(String[] interactions) {
+    public void setInteractions(String[][] interactions) {
         this.interactions = interactions;
     }
 
@@ -62,11 +55,11 @@ public class Map {
         this.view = view;
     }
 
-    public String[] getLayers() {
+    public String[][] getLayers() {
         return layers;
     }
 
-    public void setLayers(String[] layers) {
+    public void setLayers(String[][] layers) {
         this.layers = layers;
     }
 
@@ -84,5 +77,21 @@ public class Map {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String[][] getControls() {
+        return controls;
+    }
+
+    public void setControls(String[][] controls) {
+        this.controls = controls;
+    }
+
+    public String[][] getOverlays() {
+        return overlays;
+    }
+
+    public void setOverlays(String[][] overlays) {
+        this.overlays = overlays;
     }
 }

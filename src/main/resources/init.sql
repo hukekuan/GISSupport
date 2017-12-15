@@ -3,12 +3,12 @@ create table c3gis_ol_map(
    mapid    varchar(50) not null PRIMARY KEY,
    mapname varchar(50) not null,
    view    varchar(50) not null,
-   controls    varchar(50) ARRAY,
+   controls    varchar(50) [2][],
    pixelRatio     integer,
-   interactions varchar(50) ARRAY,
-   layers    varchar(50) ARRAY,
+   interactions varchar(50) [2][],
+   layers    varchar(50) [2][],
    logo    boolean,
-   overlays    varchar(50) ARRAY,
+   overlays    varchar(50) [2][],
    description varchar(50)
 );
 
