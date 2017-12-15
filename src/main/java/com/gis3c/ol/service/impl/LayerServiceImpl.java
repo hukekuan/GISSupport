@@ -5,10 +5,12 @@ import com.gis3c.ol.entity.layer.TileLayer;
 import com.gis3c.ol.entity.layer.VectorLayer;
 import com.gis3c.ol.service.LayerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  * Created by hukekuan on 2017/12/15.
  */
+@Service
 public class LayerServiceImpl implements LayerService {
     @Autowired
     private LayerDao layerDao;

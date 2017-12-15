@@ -7,10 +7,12 @@ import com.gis3c.ol.entity.source.Vector;
 import com.gis3c.ol.entity.source.Wmts;
 import com.gis3c.ol.service.SourceService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  * Created by hukekuan on 2017/12/15.
  */
+@Service
 public class SourceServiceImpl implements SourceService {
     @Autowired
     private SourceDao sourceDao;

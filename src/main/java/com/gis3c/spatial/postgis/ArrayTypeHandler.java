@@ -32,7 +32,7 @@ public class ArrayTypeHandler extends BaseTypeHandler<Object[]> {
         if (typeName == null) {
             throw new TypeException("ArrayTypeHandler parameter typeName error, your type is " + parameter.getClass().getName());
         }
-
+        System.out.println("======= "+ typeName +" =======");
         Array array = ps.getConnection().createArrayOf(typeName, parameter);
         ps.setArray(i, array);
     }

@@ -16,17 +16,17 @@ create table c3gis_ol_map(
 create table c3gis_ol_view(
    viewid    varchar(50) not null PRIMARY KEY,
    viewname    varchar(50) not null,
-   center    decimal ARRAY[2],
-   extent decimal ARRAY[4],
-   maxresolution    decimal,
-   minresolution    decimal,
+   center    NUMERIC(14,6) ARRAY[2],
+   extent NUMERIC(14,6) ARRAY[4],
+   maxresolution    varchar(50),
+   minresolution    varchar(50),
    maxzoom    int,
    minzoom    int,
    zoom    int,
    projection    varchar(50),
-   resolution    decimal,
-   resolutions    decimal ARRAY,
-   rotation    decimal,
+   resolution    varchar(50),
+   resolutions    varchar(50) ARRAY,
+   rotation    NUMERIC(7,4),
    description varchar(50)
 );
 

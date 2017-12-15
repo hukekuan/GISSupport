@@ -4,10 +4,12 @@ import com.gis3c.ol.dao.ViewDao;
 import com.gis3c.ol.entity.View;
 import com.gis3c.ol.service.ViewService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  * Created by hukekuan on 2017/12/14.
  */
+@Service
 public class ViewServiceImpl implements ViewService {
     @Autowired
     private ViewDao viewDao;

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gis3c.ol.dao.ViewDao">
+	<resultMap id="viewResult" type="com.gis3c.ol.entity.View">
+		<result property="viewId" column="viewid"/>
+		<result property="viewName" column="viewname" />
+		<result property="center" column="center" javaType="Object"/>
+		<result property="extent" column="extent" javaType="Object"/>
+		<result property="maxResolution" column="maxresolution" />
+		<result property="minResolution" column="minresolution" />
+		<result property="maxZoom" column="maxzoom" />
+		<result property="minZoom" column="minzoom" />
+		<result property="zoom" column="zoom" />
+		<result property="projection" column="projection" />
+		<result property="resolution" column="resolution" />
+		<result property="resolutions" column="resolutions" javaType="Object"/>
+		<result property="rotation" column="rotation" />
+		<result property="description" column="description" />
+	</resultMap>
+	
+    <sql id="viewColumns">
+		v.viewid
+		, v.viewname
+		, v.center
+		, v.extent
+		, v.maxresolution
+		, v.minresolution
+		, v.maxzoom
+		, v.minzoom
+		, v.zoom
+		, v.projection
+		, v.resolution
+		, v.resolutions
+		, v.rotation
+		, v.description
+    </sql>
+
+	<select id="findeViewById" resultMap="viewResult">
+		SELECT
+		<include refid="viewColumns"/>
+		FROM c3gis_ol_view v
+		WHERE v.viewid = #{viewId};
+	</select>
+
+	<select id="findeViewByName" resultMap="viewResult">
+		SELECT
+		<include refid="viewColumns"/>
+		FROM c3gis_ol_view v
+		WHERE v.viewname = #{viewName};
+	</select>
+
+	<insert id="insertView" parameterType="com.gis3c.ol.entity.View">
+		INSERT INTO c3gis_ol_view(
+		viewid
+		, viewname
+		, center
+		, extent
+		, maxresolution
+		, minresolution
+		, maxzoom
+		, minzoom
+		, zoom
+		, projection
+		, resolution
+		, resolutions
+		, rotation
+		, description
+		)
+		VALUES(
+		#{viewId}
+		, #{viewName}
+		, #{center}
+		, #{extent}
+		, #{maxResolution}
+		, #{minResolution}
+		, #{maxZoom}
+		, #{minZoom}
+		, #{zoom}
+		, #{projection}
+		, #{resolution}
+		, #{resolutions}
+		, #{rotation}
+		, #{description});
+	</insert>
+</mapper>

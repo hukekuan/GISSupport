@@ -8,14 +8,14 @@ public class View {
     private String viewName;
     private Double[] center;
     private Double[] extent;
-    private Double maxResolution;
-    private Double minResolution;
+    private String maxResolution;
+    private String minResolution;
     private Integer maxZoom;
     private Integer minZoom;
     private Integer zoom;
     private String projection;
-    private Double resolution;
-    private Double resolutions;
+    private String resolution;
+    private String[] resolutions;
     private Double rotation;
     private String description;
 
@@ -51,19 +51,19 @@ public class View {
         this.extent = extent;
     }
 
-    public Double getMaxResolution() {
+    public String getMaxResolution() {
         return maxResolution;
     }
 
-    public void setMaxResolution(Double maxResolution) {
+    public void setMaxResolution(String maxResolution) {
         this.maxResolution = maxResolution;
     }
 
-    public Double getMinResolution() {
+    public String getMinResolution() {
         return minResolution;
     }
 
-    public void setMinResolution(Double minResolution) {
+    public void setMinResolution(String minResolution) {
         this.minResolution = minResolution;
     }
 
@@ -99,19 +99,19 @@ public class View {
         this.projection = projection;
     }
 
-    public Double getResolution() {
+    public String getResolution() {
         return resolution;
     }
 
-    public void setResolution(Double resolution) {
+    public void setResolution(String resolution) {
         this.resolution = resolution;
     }
 
-    public Double getResolutions() {
+    public String[] getResolutions() {
         return resolutions;
     }
 
-    public void setResolutions(Double resolutions) {
+    public void setResolutions(String[] resolutions) {
         this.resolutions = resolutions;
     }
 
