@@ -9,9 +9,9 @@ public abstract class BaseLayer {
     private Double opacity;
     private Boolean visible = Boolean.TRUE;
     private Double[] extent;
-    private Integer zIndex;
     private Double maxResolution;
     private Double minResolution;
+
     private String description;
 
     public String getLayerId() {
@@ -52,14 +52,6 @@ public abstract class BaseLayer {
 
     public void setExtent(Double[] extent) {
         this.extent = extent;
-    }
-
-    public Integer getzIndex() {
-        return zIndex;
-    }
-
-    public void setzIndex(Integer zIndex) {
-        this.zIndex = zIndex;
     }
 
     public Double getMaxResolution() {

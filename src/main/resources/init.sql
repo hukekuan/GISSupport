@@ -62,7 +62,7 @@ create table c3gis_ol_layer_tile(
    extent decimal ARRAY[4],
    minResolution  decimal,
    maxResolution  decimal,
-   source     varchar(50) not null,
+   source     varchar(50) ARRAY[2] not null,
    description varchar(50)
 );
 

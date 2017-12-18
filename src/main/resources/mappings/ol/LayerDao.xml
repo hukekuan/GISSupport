@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gis3c.ol.dao.LayerDao">
+	<resultMap id="tileLayerResult" type="com.gis3c.ol.entity.layer.TileLayer">
+		<result property="layerId" column="layerid" />
+		<result property="layerName" column="layername" />
+		<result property="opacity" column="opacity" />
+		<result property="visible" column="visible" />
+		<result property="extent" column="extent" javaType="ObjectArray"/>
+		<result property="maxResolution" column="minResolution" />
+		<result property="minResolution" column="maxResolution" />
+		<result property="source" column="source" javaType="ObjectArray"/>
+		<result property="description" column="description" />
+	</resultMap>
+	<resultMap id="vectorLayerResult" type="com.gis3c.ol.entity.layer.VectorLayer">
+		<result property="layerId" column="layerid" />
+		<result property="layerName" column="layername" />
+		<result property="opacity" column="opacity" />
+		<result property="visible" column="visible" />
+		<result property="extent" column="extent" javaType="ObjectArray"/>
+		<result property="zIndex" column="zIndex" />
+		<result property="maxResolution" column="minResolution" />
+		<result property="minResolution" column="maxResolution" />
+		<result property="source" column="source" />
+		<result property="styleType" column="styletype" />
+		<result property="styleValue" column="stylevalue" />
+		<result property="description" column="description" />
+	</resultMap>
+	
+    <sql id="tileLayerColumns">
+		layerid
+		, layername
+		, opacity
+		, visible
+		, extent
+		, minResolution
+		, maxResolution
+		, source
+		, description
+    </sql>
+	<sql id="vectorLayerColumns">
+		layerid
+		, layername
+		, opacity
+		, visible
+		, extent
+		, zIndex
+		, minResolution
+		, maxResolution
+		, source
+		, styletype
+		, stylevalue
+		, description
+	</sql>
+
+	<select id="findeTileLayerById" resultMap="tileLayerResult">
+		SELECT
+		<include refid="tileLayerColumns"/>
+		FROM c3gis_ol_layer_tile
+		WHERE layerid = #{layerId, javaType=java.lang.String};
+	</select>
+
+	<select id="findeTileLayerByName" resultMap="tileLayerResult">
+		SELECT
+		<include refid="tileLayerColumns"/>
+		FROM c3gis_ol_layer_tile
+		WHERE layername = #{layerName, javaType=java.lang.String};
+	</select>
+
+	<insert id="insertTileLayer" parameterType="com.gis3c.ol.entity.layer.TileLayer">
+		INSERT INTO c3gis_ol_layer_tile(
+		layerid
+		, layername
+		, opacity
+		, visible
+		, extent
+		, minResolution
+		, maxResolution
+		, source
+		, description
+		)
+		VALUES(
+		#{layerId}
+		, #{layerName}
+		, #{opacity}
+		, #{visible}
+		, #{extent, javaType=ObjectArray}
+		, #{maxResolution}
+		, #{minResolution}
+		, #{source, javaType=ObjectArray}
+		, #{description});
+	</insert>
+
+	<select id="findeVectorLayerById" resultMap="vectorLayerResult">
+		SELECT
+		<include refid="vectorLayerColumns"/>
+		FROM c3gis_ol_layer_vector
+		WHERE layerid = #{layerId, javaType=java.lang.String};
+	</select>
+
+	<select id="findeVectorLayerByName" resultMap="vectorLayerResult">
+		SELECT
+		<include refid="tileLayerColumns"/>
+		FROM c3gis_ol_layer_vector
+		WHERE layername = #{layerName, javaType=java.lang.String};
+	</select>
+
+	<insert id="insertVectorLayer" parameterType="com.gis3c.ol.entity.layer.VectorLayer">
+		INSERT INTO c3gis_ol_layer_tile(
+		layerid
+		, layername
+		, opacity
+		, visible
+		, extent
+		, zIndex
+		, minResolution
+		, maxResolution
+		, source
+		, styletype
+		, stylevalue
+		, description
+		)
+		VALUES(
+		#{layerId}
+		, #{layerName}
+		, #{opacity}
+		, #{visible}
+		, #{extent, javaType=ObjectArray}
+		, #{zIndex}
+		, #{maxResolution}
+		, #{minResolution}
+		, #{source}
+		, #{styleType}
+		, #{styleValue}
+		, #{description});
+	</insert>
+</mapper>

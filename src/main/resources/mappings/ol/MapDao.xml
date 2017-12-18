@@ -5,12 +5,12 @@
 		<id property="mapId" column="mapid" />
 		<result property="mapName" column="mapname" />
 		<result property="view" column="view" />
-		<result property="controls" column="controls" javaType="Object"/>
+		<result property="controls" column="controls" javaType="ObjectArray"/>
 		<result property="pixelRatio" column="pixelRatio" />
-		<result property="interactions" column="interactions" javaType="Object"/>
-		<result property="layers" column="layers" javaType="Object"/>
+		<result property="interactions" column="interactions" javaType="ObjectArray"/>
+		<result property="layers" column="layers" javaType="ObjectArray"/>
 		<result property="logo" column="logo" />
-		<result property="overlays" column="overlays" javaType="Object"/>
+		<result property="overlays" column="overlays" javaType="ObjectArray"/>
 		<result property="description" column="description" />
 	</resultMap>
 	

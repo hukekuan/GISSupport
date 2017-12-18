@@ -1,7 +1,11 @@
 package com.gis3c;
 
 import com.gis3c.ol.entity.View;
+import com.gis3c.ol.entity.layer.TileLayer;
+import com.gis3c.ol.entity.source.Wmts;
+import com.gis3c.ol.service.LayerService;
 import com.gis3c.ol.service.MapService;
+import com.gis3c.ol.service.SourceService;
 import com.gis3c.ol.service.ViewService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -19,10 +23,42 @@ public class App {
     public static void main(String[] args) {
         ApplicationContext context = ApplicationInit();
         ViewService viewService = context.getBean(ViewService.class);
+        SourceService sourceService = context.getBean(SourceService.class);
+        LayerService layerService = context.getBean(LayerService.class);
+        MapService mapService = context.getBean(MapService.class);
 
-        View view = viewService.findeViewById("a20d41b4-208d-47da-8c02-e7023fc4e9f4");
-        System.out.println("["+ ((Double[])view.getCenter())[0] + ", " + ((Double[])view.getCenter())[1] + "]");
 
+
+        //图层接口
+//        TileLayer wmtsLayer = new TileLayer();
+//        wmtsLayer.setLayerId(UUID.randomUUID().toString());
+//        wmtsLayer.setLayerName("全国行政区图层");
+//        wmtsLayer.setSource(new String[]{"Wmts","b2729474-5988-410c-b6a0-8834b19d5832"});
+//        layerService.insertTileLayer(wmtsLayer);
+//        System.out.println("插入成功");
+
+
+//资源接口
+//        Wmts wmts = new Wmts();
+//        wmts.setSourceId(UUID.randomUUID().toString());
+//        wmts.setSourceName("山东省行政区图");
+//        wmts.setUrl("http://www.sdmap.gov.cn/tileservice/SDPubMap");
+//        wmts.setLayer("0");
+//        wmts.setFormat("image/png");
+//        wmts.setMatrixSet("tianditu2013");
+//        wmts.setStyle("default");
+//
+//        sourceService.insertWmts(wmts);
+//        System.out.println("插入成功");
+
+//        Wmts wmts = sourceService.findWmtsById("b2729474-5988-410c-b6a0-8834b19d5832");
+//        System.out.println(wmts.getUrl());
+
+
+
+// 视图接口
+//        View view = viewService.findeViewById("ee2f96a0-097a-4f0a-9767-f52b8dae28e0");
+//        System.out.println("["+ ((Double[])view.getCenter())[0] + ", " + ((Double[])view.getCenter())[1] + "]");
 
 //        View view = new View();
 //        String id = UUID.randomUUID().toString();
