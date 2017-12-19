@@ -9,4 +9,8 @@ import java.util.List;
  */
 public interface MapService {
     public List<Map> findAllList();
+
+    public Map findMapById(String mapId);
+    public Map findMapByName(String mapName);
+    public Integer insertMap(Map map);
 }

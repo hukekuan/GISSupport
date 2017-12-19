@@ -28,6 +28,22 @@ public class App {
         MapService mapService = context.getBean(MapService.class);
 
 
+        //地图接口
+        Map map = mapService.findMapById("fc813a1f-6a31-4202-9419-8d125ba203c9");
+        System.out.println(map.getLayers()[0][1]);
+//        Map map = new Map();
+//        map.setMapId(UUID.randomUUID().toString());
+//        map.setMapName("综合GIS系统");
+//        map.setView("ee2f96a0-097a-4f0a-9767-f52b8dae28e0");
+//        map.setLogo(false);
+//        map.setLayers(new String[][]{
+//            {"TileLayer","182a8b18-d26f-43da-9b3a-6f90af4825ed"},
+//            {"TileLayer","8c396460-9995-4387-8aa1-bb16c2595bba"},
+//            {"TileLayer","ad433664-3b2c-4b1b-b271-519b7f647a11"}
+//        });
+//        mapService.insertMap(map);
+//
+//        System.out.println("插入成功");
 
         //图层接口
 //        TileLayer wmtsLayer = new TileLayer();

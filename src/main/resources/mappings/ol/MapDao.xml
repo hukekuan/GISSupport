@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gis3c.ol.dao.MapDao">
 	<resultMap id="mapResult" type="com.gis3c.ol.entity.Map">
-		<id property="mapId" column="mapid" />
+		<result property="mapId" column="mapid" />
 		<result property="mapName" column="mapname" />
 		<result property="view" column="view" />
 		<result property="controls" column="controls" javaType="ObjectArray"/>
@@ -32,4 +32,41 @@
 		<include refid="mapColumns"/>
 		FROM c3gis_ol_map;
 	</select>
+
+	<select id="findMapById" resultMap="mapResult">
+		SELECT
+		<include refid="mapColumns" />
+		FROM c3gis_ol_map
+		WHERE mapid = #{mapId, javaType=java.lang.String};
+	</select>
+	<select id="findMapByName" resultMap="mapResult">
+		SELECT
+		<include refid="mapColumns" />
+		FROM c3gis_ol_map
+		WHERE mapname = #{mapName, javaType=java.lang.String};
+	</select>
+	<insert id="insertMap" parameterType="com.gis3c.ol.entity.Map">
+		INSERT INTO c3gis_ol_map(
+		mapid
+		, mapname
+		, view
+		, controls
+		, pixelRatio
+		, interactions
+		, layers
+		, logo
+		, overlays
+		, description) VALUES (
+			#{mapId}
+			, #{mapName}
+			, #{view}
+			, #{controls, javaType=ObjectArray}
+			, #{pixelRatio}
+			, #{interactions, javaType=ObjectArray}
+			, #{layers, javaType=ObjectArray}
+			, #{logo}
+			, #{overlays, javaType=ObjectArray}
+			, #{description}
+		);
+	</insert>
 </mapper>

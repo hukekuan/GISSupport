@@ -20,4 +20,19 @@ public class MapServiceImpl implements MapService {
     public List<Map> findAllList() {
         return mapDao.findAllList();
     }
+
+    @Override
+    public Map findMapById(String mapId) {
+        return mapDao.findMapById(mapId);
+    }
+
+    @Override
+    public Map findMapByName(String mapName) {
+        return mapDao.findMapByName(mapName);
+    }
+
+    @Override
+    public Integer insertMap(Map map) {
+        return mapDao.insertMap(map);
+    }
 }

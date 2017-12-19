@@ -21,13 +21,13 @@ public class ArrayTypeHandler extends BaseTypeHandler<Object[]> {
     @Override
     public void setNonNullParameter(PreparedStatement ps, int i, Object[] parameter, JdbcType jdbcType) throws SQLException {
         String typeName = null;
-        if (parameter instanceof Integer[]) {
+        if (parameter instanceof Integer[] || parameter instanceof Integer[][]) {
             typeName = TYPE_NAME_INTEGER;
-        } else if (parameter instanceof String[]) {
+        } else if (parameter instanceof String[] || parameter instanceof String[][]) {
             typeName = TYPE_NAME_VARCHAR;
-        } else if (parameter instanceof Boolean[]) {
+        } else if (parameter instanceof Boolean[] || parameter instanceof Boolean[][]) {
             typeName = TYPE_NAME_BOOLEAN;
-        } else if (parameter instanceof Double[]) {
+        } else if (parameter instanceof Double[] || parameter instanceof Boolean[][]) {
             typeName = TYPE_NAME_NUMERIC;
         }
 

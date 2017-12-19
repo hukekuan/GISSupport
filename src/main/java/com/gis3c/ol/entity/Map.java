@@ -31,6 +31,22 @@ public class Map {
         this.mapName = mapName;
     }
 
+    public String getView() {
+        return view;
+    }
+
+    public void setView(String view) {
+        this.view = view;
+    }
+
+    public String[][] getControls() {
+        return controls;
+    }
+
+    public void setControls(String[][] controls) {
+        this.controls = controls;
+    }
+
     public Integer getPixelRatio() {
         return pixelRatio;
     }
@@ -45,14 +61,6 @@ public class Map {
 
     public void setInteractions(String[][] interactions) {
         this.interactions = interactions;
-    }
-
-    public String getView() {
-        return view;
-    }
-
-    public void setView(String view) {
-        this.view = view;
     }
 
     public String[][] getLayers() {
@@ -71,27 +79,19 @@ public class Map {
         this.logo = logo;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String[][] getControls() {
-        return controls;
-    }
-
-    public void setControls(String[][] controls) {
-        this.controls = controls;
-    }
-
     public String[][] getOverlays() {
         return overlays;
     }
 
     public void setOverlays(String[][] overlays) {
         this.overlays = overlays;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
