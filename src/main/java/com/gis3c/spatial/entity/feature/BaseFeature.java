@@ -91,7 +91,7 @@ public class BaseFeature implements IFeature {
      * @throws IllegalAccessException
      * @date 2017-07-10 下午7:10
      */
-    public SimpleFeature attribute2Feature(SimpleFeatureType featureType,String featureIndex)
+    public SimpleFeature attribute2Feature(SimpleFeatureType featureType, String featureIndex)
             throws IllegalArgumentException, IllegalAccessException {
         SimpleFeature simpleFeature = null;
         if(featureType == null){
@@ -106,82 +106,6 @@ public class BaseFeature implements IFeature {
         }
         simpleFeature = featureBuilder.buildFeature(featureIndex, objList.toArray());
         return simpleFeature;
-    }
-
-    /**
-     * @author hukekuan
-     * @Description 对象列表转 SimpleFeatureCollection
-     * @param simpleFeatureList
-     * @return SimpleFeatureCollection
-     * @date 2017-07-11 上午9:46
-     */
-    public static SimpleFeatureCollection Attributes2Features(List<SimpleFeature> simpleFeatureList){
-        SimpleFeatureCollection simpleFeatureCollection = null;
-        if(simpleFeatureList != null && simpleFeatureList.size() > 0){
-            simpleFeatureCollection = DataUtilities.collection(simpleFeatureList);
-        }
-        return simpleFeatureCollection;
-    }
-
-    /**
-     * @author hukekuan
-     * @Description 对象列表转 GeoJSON
-     * @param simpleFeatureList
-     * @return GeoJSON字符串
-     * @throws IOException
-     */
-    public static String Attributes2GeoJSON(List<SimpleFeature> simpleFeatureList)
-            throws IOException {
-        String result = null;
-        SimpleFeatureCollection simpleFeatureCollection = null;
-
-        if(simpleFeatureList != null && simpleFeatureList.size() > 0){
-            FeatureJSON fjson = new FeatureJSON();
-            StringWriter writer = new StringWriter();
-            simpleFeatureCollection = Attributes2Features(simpleFeatureList);
-            fjson.writeFeatureCollection(simpleFeatureCollection, writer);
-            result = writer.toString();
-        }
-
-        return result;
-    }
-
-    /**
-     * @author hukekuan
-     * @Description SimpleFeatureCollection转 GeoJSON
-     * @param featureCollection
-     * @return GeoJSON字符串
-     * @throws IOException
-     */
-    public static String FeatureCollection2GeoJson(SimpleFeatureCollection featureCollection)
-            throws IOException{
-        String result = null;
-        FeatureJSON fjson;
-        StringWriter writer;
-        if(featureCollection != null && featureCollection.size() > 0){
-            fjson = new FeatureJSON();
-            writer = new StringWriter();
-            fjson.writeFeatureCollection(featureCollection, writer);
-            result = writer.toString();
-        }
-        return result;
-    }
-
-    /**
-     * @author hukekuan
-     * @Description GeoJSON转SimpleFeatureCollection
-     * @param geojsonStr geojson字符串
-     * @return SimpleFeatureCollection
-     * @throws IOException
-     */
-    public static SimpleFeatureCollection GeoJson2FeatureCollection(String geojsonStr)
-            throws IOException{
-        SimpleFeatureCollection result = null;
-        FeatureJSON fjson = new FeatureJSON();
-
-        result = (SimpleFeatureCollection) fjson.readFeatureCollection(new ByteArrayInputStream(geojsonStr.getBytes()));
-
-        return result;
     }
 
 
