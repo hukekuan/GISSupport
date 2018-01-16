@@ -1,6 +1,6 @@
 package com.gis3c.ol.dao;
 
-import com.gis3c.common.persistence.annotation.C3BatisDao;
+import com.gis3c.common.persistence.annotation.C3olDao;
 import com.gis3c.ol.entity.source.TileArcGISRest;
 import com.gis3c.ol.entity.source.TileSuperMapRest;
 import com.gis3c.ol.entity.source.Vector;
@@ -9,7 +9,7 @@ import com.gis3c.ol.entity.source.Wmts;
 /**
  * Created by hukekuan on 2017/12/15.
  */
-@C3BatisDao
+@C3olDao
 public interface SourceDao {
     public TileArcGISRest findTileArcGISRestById(String sourceId);
     public TileArcGISRest findTileArcGISRestByName(String sourceName);

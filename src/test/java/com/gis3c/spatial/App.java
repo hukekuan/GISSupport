@@ -1,17 +1,17 @@
-package com.gis3c;
+package com.gis3c.spatial;
 
-import com.gis3c.ol.entity.View;
-import com.gis3c.ol.entity.layer.TileLayer;
-import com.gis3c.ol.entity.source.Wmts;
+import com.gis3c.ol.entity.Map;
 import com.gis3c.ol.service.LayerService;
 import com.gis3c.ol.service.MapService;
 import com.gis3c.ol.service.SourceService;
 import com.gis3c.ol.service.ViewService;
+import com.gis3c.spatial.entity.Test;
+import com.gis3c.spatial.entity.feature.IFeature;
+import com.gis3c.spatial.service.TestService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import com.gis3c.ol.entity.Map;
 
-import java.util.UUID;
+import java.util.List;
 
 /**
  * Created by hukekuan on 2017/12/14.
@@ -27,10 +27,18 @@ public class App {
         LayerService layerService = context.getBean(LayerService.class);
         MapService mapService = context.getBean(MapService.class);
 
+        TestService testService = context.getBean(TestService.class);
 
-        //地图接口
-        Map map = mapService.findMapById("fc813a1f-6a31-4202-9419-8d125ba203c9");
-        System.out.println(map.getLayers()[0][1]);
+
+        List<Test> result = testService.allList();
+        Test test = result.get(0);
+
+        System.out.println(test.AllFieldes());
+
+//        //地图接口
+//        Map map = mapService.findMapById("fc813a1f-6a31-4202-9419-8d125ba203c9");
+//        System.out.println(map.getLayers()[0][1]);
+
 //        Map map = new Map();
 //        map.setMapId(UUID.randomUUID().toString());
 //        map.setMapName("综合GIS系统");

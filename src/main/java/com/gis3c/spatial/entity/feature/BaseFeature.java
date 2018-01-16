@@ -24,7 +24,7 @@ import java.util.List;
  * @Description 具有空间字段的基类
  * @date 2017-07-10 下午3:43
  */
-public class BaseFeature {
+public class BaseFeature implements IFeature {
     private Geometry geometry;
 
     public Geometry getGeometry() {
@@ -38,7 +38,8 @@ public class BaseFeature {
     /**
      * 获取所有字段信息
      */
-    private List<Field> AllFieldes(){
+    @Override
+    public List<Field> AllFieldes(){
         List<Field> fieldList = new ArrayList<>();
 
         Class superClass = BaseFeature.class;
