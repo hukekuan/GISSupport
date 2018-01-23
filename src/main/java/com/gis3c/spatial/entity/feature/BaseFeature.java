@@ -91,7 +91,7 @@ public class BaseFeature implements IFeature {
      * @throws IllegalAccessException
      * @date 2017-07-10 下午7:10
      */
-    public SimpleFeature attribute2Feature(SimpleFeatureType featureType, String featureIndex)
+    public SimpleFeature javaBean2SimpleFeature(SimpleFeatureType featureType, String featureIndex)
             throws IllegalArgumentException, IllegalAccessException {
         SimpleFeature simpleFeature = null;
         if(featureType == null){

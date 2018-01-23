@@ -4,7 +4,7 @@
 
   <groupId>com.c3gis</groupId>
   <artifactId>c3gis</artifactId>
-  <version>1.0.1</version>
+  <version>1.0.2</version>
   <build>
     <plugins>
       <plugin>

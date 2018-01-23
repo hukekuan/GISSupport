@@ -33,6 +33,14 @@
 		FROM c3gis_ol_map;
 	</select>
 
+	<select id="findMapsByByPage" resultMap="mapResult">
+		SELECT
+		<include refid="mapColumns"/>
+		FROM c3gis_ol_map
+		limit #{pageSize, javaType=java.lang.Integer}
+		offset #{currentPage, javaType=java.lang.Integer};
+	</select>
+
 	<select id="findMapById" resultMap="mapResult">
 		SELECT
 		<include refid="mapColumns" />

@@ -1,19 +1,66 @@
 package com.gis3c.spatial.common;
 
+import com.gis3c.spatial.entity.feature.BaseFeature;
 import org.geotools.data.DataUtilities;
 import org.geotools.data.simple.SimpleFeatureCollection;
 import org.geotools.geojson.feature.FeatureJSON;
 import org.opengis.feature.simple.SimpleFeature;
+import org.opengis.feature.simple.SimpleFeatureType;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.StringWriter;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by hukekuan on 2018/1/16.
  */
 public class FeatureUtilities {
+    /**
+     * @Description: 将java bean转换为Simple Feature
+     * @param beansList
+     * @return
+     * @throws IllegalAccessException
+     */
+    public static List<SimpleFeature> JavaBeans2Features(List<? extends BaseFeature> beansList)
+            throws IllegalAccessException {
+        if(beansList == null || beansList.size() == 0){
+            throw new NullPointerException("参数无效");
+        }
+        List<SimpleFeature> simpleFeatureList = new ArrayList<>();
+        SimpleFeatureType featureType = beansList.get(0).createFeatureType();
+        for(int i = 0,len = beansList.size();i < len;i++){
+            simpleFeatureList.add(beansList.get(i).javaBean2SimpleFeature(featureType,Integer.toString(i)));
+        }
+
+        return simpleFeatureList;
+    }
+
+    /**
+     * @Description: 将java bean转换SimpleFeatureCollection
+     * @param beansList
+     * @return
+     * @throws IllegalAccessException
+     */
+    public static SimpleFeatureCollection JavaBeans2Collections(List<? extends BaseFeature> beansList)
+            throws IllegalAccessException {
+        List<SimpleFeature> simpleFeatureList = JavaBeans2Features(beansList);
+        return Features2Collection(simpleFeatureList);
+    }
+
+    /**
+     * @Description: 将java bean转换GeoJSON
+     * @param beansList
+     * @return
+     * @throws IllegalAccessException
+     * @throws IOException
+     */
+    public static String JavaBeans2Json(List<? extends BaseFeature> beansList)
+            throws IllegalAccessException, IOException {
+        List<SimpleFeature> simpleFeatureList = JavaBeans2Features(beansList);
+        return Features2GeoJSON(simpleFeatureList);
+    }
 
     /**
      * @author hukekuan

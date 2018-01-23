@@ -5,12 +5,13 @@ import com.gis3c.ol.service.LayerService;
 import com.gis3c.ol.service.MapService;
 import com.gis3c.ol.service.SourceService;
 import com.gis3c.ol.service.ViewService;
+import com.gis3c.spatial.common.FeatureUtilities;
 import com.gis3c.spatial.entity.Test;
-import com.gis3c.spatial.entity.feature.IFeature;
 import com.gis3c.spatial.service.TestService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -20,7 +21,7 @@ public class App {
     public static ApplicationContext ApplicationInit(){
         return new ClassPathXmlApplicationContext("classpath:spring-config.xml");
     }
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IllegalAccessException, IOException {
         ApplicationContext context = ApplicationInit();
         ViewService viewService = context.getBean(ViewService.class);
         SourceService sourceService = context.getBean(SourceService.class);
@@ -29,11 +30,17 @@ public class App {
 
         TestService testService = context.getBean(TestService.class);
 
+//        List<Map> mapList = mapService.findMapsByByPage(10,0);
+        Map map = mapService.findMapById("fc813a1f-6a31-4202-9419-8d125ba203c9");
+        System.out.println(map);
 
-        List<Test> result = testService.allList();
-        Test test = result.get(0);
 
-        System.out.println(test.AllFieldes());
+//        List<Test> result = testService.allList();
+//        Test test = result.get(0);
+//        SimpleFeatureType type = test.createFeatureType();
+//
+//        System.out.println(type);
+//        System.out.println(FeatureUtilities.JavaBeans2Json(result));
 
 //        //地图接口
 //        Map map = mapService.findMapById("fc813a1f-6a31-4202-9419-8d125ba203c9");

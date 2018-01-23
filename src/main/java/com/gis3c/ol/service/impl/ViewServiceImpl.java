@@ -6,6 +6,8 @@ import com.gis3c.ol.service.ViewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Created by hukekuan on 2017/12/14.
  */
@@ -13,6 +15,11 @@ import org.springframework.stereotype.Service;
 public class ViewServiceImpl implements ViewService {
     @Autowired
     private ViewDao viewDao;
+
+    @Override
+    public List<View> findViewsByByPage(Integer pageSize, Integer currentPage) {
+        return viewDao.findViewsByByPage(pageSize,currentPage);
+    }
 
     @Override
     public View findeViewById(String viewId) {

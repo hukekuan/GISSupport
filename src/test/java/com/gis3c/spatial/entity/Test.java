@@ -1,8 +1,6 @@
 package com.gis3c.spatial.entity;
 
 import com.gis3c.spatial.entity.feature.BaseFeature;
-import com.gis3c.spatial.entity.geometry.C3Point;
-import com.vividsolutions.jts.geom.Point;
 
 /**
  * Created by hukekuan on 2018/1/16.

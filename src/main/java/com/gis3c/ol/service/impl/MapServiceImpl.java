@@ -22,6 +22,11 @@ public class MapServiceImpl implements MapService {
     }
 
     @Override
+    public List<Map> findMapsByByPage(Integer pageSize,Integer currentPage) {
+        return mapDao.findMapsByByPage(pageSize,currentPage);
+    }
+
+    @Override
     public Map findMapById(String mapId) {
         return mapDao.findMapById(mapId);
     }

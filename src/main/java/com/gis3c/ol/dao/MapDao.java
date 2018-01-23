@@ -2,6 +2,8 @@ package com.gis3c.ol.dao;
 
 import com.gis3c.common.persistence.annotation.C3olDao;
 import com.gis3c.ol.entity.Map;
+import org.apache.ibatis.annotations.Param;
+
 import java.util.List;
 
 /**
@@ -10,6 +12,9 @@ import java.util.List;
 @C3olDao
 public interface MapDao {
     public List<Map> findAllList();
+    public List<Map> findMapsByByPage(
+            @Param("pageSize") Integer pageSize,
+            @Param("currentPage") Integer currentPage);
 
     public Map findMapById(String mapId);
     public Map findMapByName(String mapName);

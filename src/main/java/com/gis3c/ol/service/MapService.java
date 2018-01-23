@@ -9,6 +9,7 @@ import java.util.List;
  */
 public interface MapService {
     public List<Map> findAllList();
+    public List<Map> findMapsByByPage(Integer pageSize,Integer currentPage);
 
     public Map findMapById(String mapId);
     public Map findMapByName(String mapName);
