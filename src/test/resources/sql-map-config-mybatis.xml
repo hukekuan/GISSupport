@@ -47,9 +47,11 @@
     <typeAliases>
         <typeAlias type="com.vividsolutions.jts.geom.Geometry" alias="Geometry" />
         <typeAlias type="java.lang.Object" alias="ObjectArray" />
+        <typeAlias type="java.lang.Object" alias="ObjectJSON" />
     </typeAliases>
     <typeHandlers>
         <typeHandler handler="com.gis3c.spatial.postgis.PostGISHandler" javaType="Geometry" />
         <typeHandler handler="com.gis3c.spatial.postgis.ArrayTypeHandler" javaType="ObjectArray" />
+        <typeHandler handler="com.gis3c.spatial.postgis.JsonTypeHandler" javaType="ObjectJSON" />
     </typeHandlers>
 </configuration>

@@ -110,6 +110,15 @@ create table c3gis_ol_source_wmts(
    description varchar(50)
 );
 
+create table c3gis_ol_source(
+   sourceid    varchar(50) not null PRIMARY KEY,
+   sourcename    varchar(50) not null,
+   url    varchar(50) not null,
+   params   jsonb,
+   description varchar(50)
+);
+
+
 --样式表
 create table c3gis_ol_style_style(
    styleid    varchar(50) not null,
