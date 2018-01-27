@@ -37,6 +37,14 @@
 		<result property="opaque" column="opaque" />
 		<result property="description" column="description" />
 	</resultMap>
+
+	<resultMap id="sourceResult" type="com.gis3c.ol.entity.Source">
+		<result property="sourceId" column="sourceid" />
+		<result property="sourceName" column="sourcename" />
+		<result property="url" column="url" />
+		<result property="params" column="params" javaType="ObjectJSON"/>
+		<result property="description" column="description" />
+	</resultMap>
 	
     <sql id="wmtsColumns">
 		sourceid
@@ -217,4 +225,24 @@
 	);
 	</insert>
 
+	<select id="findAllSources" resultMap="sourceResult">
+		SELECT sourceid,sourcename,url,params,description
+		FROM c3gis_ol_source;
+	</select>
+	<insert id="insertSource" parameterType="com.gis3c.ol.entity.Source">
+		INSERT INTO c3gis_ol_source(
+		sourceid
+		, sourcename
+		, url
+		, params
+		, description
+		)
+		VALUES(
+		#{sourceId}
+		, #{sourceName}
+		, #{url}
+		, #{params, javaType=ObjectJSON}::jsonb
+		, #{description}
+		);
+	</insert>
 </mapper>

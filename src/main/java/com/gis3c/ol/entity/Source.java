@@ -9,6 +9,7 @@ import java.util.Map;
 public class Source {
     private String sourceId;
     private String sourceName;
+    private String url;
     private java.util.Map<String,Object> params;
     private String description;
 
@@ -42,5 +43,13 @@ public class Source {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 }

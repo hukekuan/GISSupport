@@ -2,7 +2,8 @@
 create table c3gis_ol_map(
    mapid    varchar(50) not null PRIMARY KEY,
    mapname varchar(50) not null,
-   view    varchar(50) not null,
+   --view    varchar(50) not null,
+   view    jsonb not null,
    controls    varchar(50) [2][],
    pixelRatio     integer,
    interactions varchar(50) [2][],
@@ -63,6 +64,24 @@ create table c3gis_ol_layer_tile(
    minResolution  decimal,
    maxResolution  decimal,
    source     varchar(50) ARRAY[2] not null,
+   description varchar(50)
+);
+
+
+--图层表
+create table c3gis_ol_layer(
+   layerId    varchar(50) not null PRIMARY KEY,
+   layerName    varchar(50) not null,
+   aliasName   varchar(50),
+   opacity  real,
+   source   varchar(50),
+   visible    boolean,
+   extent decimal ARRAY[4],
+   zIndex   integer,
+   minResolution    decimal,
+   maxResolution    decimal,
+   type   varchar(50),
+   options  jsonb,
    description varchar(50)
 );
 

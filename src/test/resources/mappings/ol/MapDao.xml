@@ -4,7 +4,7 @@
 	<resultMap id="mapResult" type="com.gis3c.ol.entity.Map">
 		<result property="mapId" column="mapid" />
 		<result property="mapName" column="mapname" />
-		<result property="view" column="view" />
+		<result property="view" column="view" javaType="ObjectJSON"/>
 		<result property="controls" column="controls" javaType="ObjectArray"/>
 		<result property="pixelRatio" column="pixelRatio" />
 		<result property="interactions" column="interactions" javaType="ObjectArray"/>
@@ -54,20 +54,19 @@
 		WHERE mapname = #{mapName, javaType=java.lang.String};
 	</select>
 	<insert id="insertMap" parameterType="com.gis3c.ol.entity.Map">
-		INSERT INTO c3gis_ol_map(
-		mapid
-		, mapname
-		, view
-		, controls
-		, pixelRatio
-		, interactions
-		, layers
-		, logo
-		, overlays
-		, description) VALUES (
-			#{mapId}
+		INSERT INTO c3gis_ol_map( mapid
+			, mapname
+			, view
+			, controls
+			, pixelRatio
+			, interactions
+			, layers
+			, logo
+			, overlays
+			, description)
+		VALUES ( #{mapId}
 			, #{mapName}
-			, #{view}
+			, #{view, javaType=ObjectJSON}::jsonb
 			, #{controls, javaType=ObjectArray}
 			, #{pixelRatio}
 			, #{interactions, javaType=ObjectArray}

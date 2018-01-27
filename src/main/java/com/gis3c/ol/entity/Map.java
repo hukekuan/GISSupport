@@ -6,7 +6,7 @@ package com.gis3c.ol.entity;
 public class Map {
     private String mapId;
     private String mapName;
-    private String view;
+    private java.util.Map<String,Object> view;
     private String[][] controls;
     private Integer pixelRatio;
     private String[][] interactions;
@@ -31,11 +31,11 @@ public class Map {
         this.mapName = mapName;
     }
 
-    public String getView() {
+    public java.util.Map<String,Object> getView() {
         return view;
     }
 
-    public void setView(String view) {
+    public void setView(java.util.Map<String,Object> view) {
         this.view = view;
     }
 

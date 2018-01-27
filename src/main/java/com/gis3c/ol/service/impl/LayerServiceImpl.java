@@ -1,8 +1,7 @@
 package com.gis3c.ol.service.impl;
 
 import com.gis3c.ol.dao.LayerDao;
-import com.gis3c.ol.entity.layer.TileLayer;
-import com.gis3c.ol.entity.layer.VectorLayer;
+import com.gis3c.ol.entity.Layer;
 import com.gis3c.ol.service.LayerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,32 +15,17 @@ public class LayerServiceImpl implements LayerService {
     private LayerDao layerDao;
 
     @Override
-    public TileLayer findeTileLayerById(String layerId) {
-        return layerDao.findeTileLayerById(layerId);
+    public Layer findeLayerById(String layerId) {
+        return layerDao.findeLayerById(layerId);
     }
 
     @Override
-    public TileLayer findeTileLayerByName(String layerName) {
-        return layerDao.findeTileLayerByName(layerName);
+    public Layer findeLayerByName(String layerName) {
+        return layerDao.findeLayerByName(layerName);
     }
 
     @Override
-    public Integer insertTileLayer(TileLayer tileLayer) {
-        return layerDao.insertTileLayer(tileLayer);
-    }
-
-    @Override
-    public VectorLayer findeVectorLayerById(String layerId) {
-        return layerDao.findeVectorLayerById(layerId);
-    }
-
-    @Override
-    public VectorLayer findeVectorLayerByName(String layerName) {
-        return layerDao.findeVectorLayerByName(layerName);
-    }
-
-    @Override
-    public Integer insertVectorLayer(VectorLayer vectorLayer) {
-        return layerDao.insertVectorLayer(vectorLayer);
+    public Integer insertLayer(Layer layer) {
+        return layerDao.insertLayer(layer);
     }
 }
