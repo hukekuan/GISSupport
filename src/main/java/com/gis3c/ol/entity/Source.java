@@ -9,8 +9,8 @@ import java.util.Map;
 public class Source {
     private String sourceId;
     private String sourceName;
-    private String url;
-    private java.util.Map<String,Object> params;
+    private String type;
+    private java.util.Map<String,Object> options;
     private String description;
 
     public String getSourceId() {
@@ -29,14 +29,6 @@ public class Source {
         this.sourceName = sourceName;
     }
 
-    public java.util.Map<String, Object> getParams() {
-        return params;
-    }
-
-    public void setParams(Map<String, Object> params) {
-        this.params = params;
-    }
-
     public String getDescription() {
         return description;
     }
@@ -45,11 +37,19 @@ public class Source {
         this.description = description;
     }
 
-    public String getUrl() {
-        return url;
+    public String getType() {
+        return type;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public Map<String, Object> getOptions() {
+        return options;
+    }
+
+    public void setOptions(Map<String, Object> options) {
+        this.options = options;
     }
 }

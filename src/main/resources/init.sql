@@ -130,10 +130,10 @@ create table c3gis_ol_source_wmts(
 );
 
 create table c3gis_ol_source(
-   sourceid    varchar(50) not null PRIMARY KEY,
-   sourcename    varchar(50) not null,
-   url    varchar(50) not null,
-   params   jsonb,
+   sourceId    varchar(50) not null PRIMARY KEY,
+   sourceName    varchar(50) not null,
+   type    varchar(50) not null,
+   options   jsonb,
    description varchar(50)
 );
 

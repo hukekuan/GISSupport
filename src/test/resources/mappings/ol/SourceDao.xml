@@ -1,248 +1,39 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gis3c.ol.dao.SourceDao">
-	<resultMap id="wmtsResult" type="com.gis3c.ol.entity.source.Wmts">
-		<result property="sourceId" column="sourceid" />
-		<result property="sourceName" column="sourcename" />
-		<result property="url" column="url" />
-		<result property="layer" column="layer" />
-		<result property="style" column="style" />
-		<result property="format" column="format" />
-		<result property="matrixSet" column="matrixSet" />
-		<result property="description" column="description" />
-	</resultMap>
-	<resultMap id="vectorResult" type="com.gis3c.ol.entity.source.Vector">
-		<result property="sourceId" column="sourceid" />
-		<result property="sourceName" column="sourcename" />
-		<result property="url" column="url" />
-		<result property="logo" column="logo" />
-		<result property="useSpatialIndex" column="useSpatialIndex" />
-		<result property="wrapX" column="wrapX" />
-		<result property="description" column="description" />
-	</resultMap>
-	<resultMap id="arcgisResult" type="com.gis3c.ol.entity.source.TileArcGISRest">
-		<result property="sourceId" column="sourceid" />
-		<result property="sourceName" column="sourcename" />
-		<result property="url" column="url" />
-		<result property="crossOrigin" column="crossOrigin" />
-		<result property="projection" column="projection" />
-		<result property="wrapX" column="wrapX" />
-		<result property="description" column="description" />
-	</resultMap>
-	<resultMap id="supermapResult" type="com.gis3c.ol.entity.source.TileSuperMapRest">
-		<result property="sourceId" column="sourceid" />
-		<result property="sourceName" column="sourcename" />
-		<result property="url" column="url" />
-		<result property="wrapX" column="wrapX" />
-		<result property="opaque" column="opaque" />
-		<result property="description" column="description" />
-	</resultMap>
-
 	<resultMap id="sourceResult" type="com.gis3c.ol.entity.Source">
-		<result property="sourceId" column="sourceid" />
-		<result property="sourceName" column="sourcename" />
-		<result property="url" column="url" />
-		<result property="params" column="params" javaType="ObjectJSON"/>
+		<result property="sourceId" column="sourceId" />
+		<result property="sourceName" column="sourceName" />
+		<result property="type" column="type" />
+		<result property="options" column="options" javaType="ObjectJSON"/>
 		<result property="description" column="description" />
 	</resultMap>
 	
-    <sql id="wmtsColumns">
-		sourceid
-		, sourcename
-		, url
-		, layer
-		, style
-		, format
-		, matrixSet
+    <sql id="sourceColumns">
+		sourceId
+		, sourceName
+		, type
+		, options
 		, description
     </sql>
-	<sql id="vectorColumns">
-		sourceid
-		, sourcename
-		, url
-		, logo
-		, useSpatialIndex
-		, wrapX
-		, description
-	</sql>
-	<sql id="arcgisColumns">
-		sourceid
-		, sourcename
-		, url
-		, crossOrigin
-		, projection
-		, wrapX
-		, description
-	</sql>
-	<sql id="supermapColumns">
-		sourceid
-		, sourcename
-		, url
-		, wrapX
-		, opaque
-		, description
-	</sql>
-
-
-	<select id="findTileArcGISRestById" resultMap="arcgisResult">
-		SELECT
-		<include refid="arcgisColumns"/>
-		FROM c3gis_ol_source_tilearcgisrest
-		WHERE sourceid = #{sourceId, javaType=java.lang.String};
-	</select>
-
-	<select id="findTileArcGISRestByName" resultMap="arcgisResult">
-		SELECT
-		<include refid="arcgisColumns"/>
-		FROM c3gis_ol_source_tilearcgisrest
-		WHERE sourcename = #{sourceName, javaType=java.lang.String};
-	</select>
-
-	<insert id="insertTileArcGISRest" parameterType="com.gis3c.ol.entity.source.TileArcGISRest">
-		INSERT INTO c3gis_ol_source_tilearcgisrest(
-		sourceid
-		, sourcename
-		, url
-		, crossOrigin
-		, projection
-		, wrapX
-		, description
-		)
-		VALUES(
-		#{sourceId}
-		, #{sourceName}
-		, #{url}
-		, #{crossOrigin}
-		, #{projection}
-		, #{wrapX}
-		, #{description});
-	</insert>
-
-
-	<select id="findTileTileSuperMapRestById" resultMap="supermapResult">
-		SELECT
-		<include refid="supermapColumns"/>
-		FROM c3gis_ol_source_tilesupermaprest
-		WHERE sourceid = #{sourceId, javaType=java.lang.String};
-	</select>
-
-	<select id="findTileTileSuperMapRestByName" resultMap="supermapResult">
-		SELECT
-		<include refid="supermapColumns"/>
-		FROM c3gis_ol_source_tilesupermaprest
-		WHERE sourcename = #{sourceName, javaType=java.lang.String};
-	</select>
-
-	<insert id="insertTileSuperMapRest" parameterType="com.gis3c.ol.entity.source.TileSuperMapRest">
-		INSERT INTO c3gis_ol_source_tilesupermaprest(
-		sourceid
-		, sourcename
-		, url
-		, wrapX
-		, opaque
-		, description
-		)
-		VALUES(
-		#{sourceId}
-		, #{sourceName}
-		, #{url}
-		, #{wrapX}
-		, #{opaque}
-		, #{description});
-	</insert>
-
-
-	<select id="findVectorById" resultMap="vectorResult">
-		SELECT
-		<include refid="vectorColumns"/>
-		FROM c3gis_ol_source_vector
-		WHERE sourceid = #{sourceId, javaType=java.lang.String};
-	</select>
-
-	<select id="findVectorByName" resultMap="vectorResult">
-		SELECT
-		<include refid="vectorColumns"/>
-		FROM c3gis_ol_source_vector
-		WHERE sourcename = #{sourceName, javaType=java.lang.String};
-	</select>
-
-	<insert id="insertVector" parameterType="com.gis3c.ol.entity.source.Vector">
-		INSERT INTO c3gis_ol_source_vector(
-		sourceid
-		, sourcename
-		, url
-		, logo
-		, useSpatialIndex
-		, wrapX
-		, description
-		)
-		VALUES(
-		#{sourceId}
-		, #{sourceName}
-		, #{url}
-		, #{logo}
-		, #{useSpatialIndex}
-		, #{wrapX}
-		, #{description});
-	</insert>
-
-
-
-	<select id="findWmtsById" resultMap="wmtsResult">
-		SELECT
-		<include refid="wmtsColumns"/>
-		FROM c3gis_ol_source_wmts
-		WHERE sourceid = #{sourceId, javaType=java.lang.String};
-	</select>
-
-	<select id="findWmtsByName" resultMap="wmtsResult">
-		SELECT
-		<include refid="wmtsColumns"/>
-		FROM c3gis_ol_source_wmts
-		WHERE sourcename = #{sourceName, javaType=java.lang.String};
-	</select>
-
-	<insert id="insertWmts" parameterType="com.gis3c.ol.entity.source.Wmts">
-		INSERT INTO c3gis_ol_source_wmts(
-		sourceid
-		, sourcename
-		, url
-		, layer
-		, style
-		, format
-		, matrixSet
-		, description
-		)
-		VALUES(
-		#{sourceId}
-		, #{sourceName}
-		, #{url}
-		, #{layer}
-		, #{style}
-		, #{format}
-		, #{matrixSet}
-		, #{description}
-	);
-	</insert>
 
 	<select id="findAllSources" resultMap="sourceResult">
-		SELECT sourceid,sourcename,url,params,description
+		SELECT
+		<include refid="sourceColumns"/>
 		FROM c3gis_ol_source;
 	</select>
 	<insert id="insertSource" parameterType="com.gis3c.ol.entity.Source">
-		INSERT INTO c3gis_ol_source(
-		sourceid
-		, sourcename
-		, url
-		, params
-		, description
+		INSERT INTO c3gis_ol_source(sourceId
+			, sourceName
+			, type
+			, options
+			, description
 		)
-		VALUES(
-		#{sourceId}
-		, #{sourceName}
-		, #{url}
-		, #{params, javaType=ObjectJSON}::jsonb
-		, #{description}
+		VALUES(#{sourceId}
+			, #{sourceName}
+			, #{type}
+			, #{options, javaType=ObjectJSON}::jsonb
+			, #{description}
 		);
 	</insert>
 </mapper>
