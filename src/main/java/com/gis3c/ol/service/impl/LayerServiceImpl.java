@@ -1,11 +1,15 @@
 package com.gis3c.ol.service.impl;
 
+import com.gis3c.common.bean.BeanUtil;
+import com.gis3c.common.exception.BusinessException;
 import com.gis3c.ol.dao.LayerDao;
 import com.gis3c.ol.entity.Layer;
+import com.gis3c.ol.entity.Source;
 import com.gis3c.ol.service.LayerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -23,8 +27,17 @@ public class LayerServiceImpl implements LayerService {
     }
 
     @Override
-    public List<Layer> findLayersByPage(Integer pageSize, Integer currentPage) {
-        return layerDao.findLayersByPage(pageSize,(currentPage -1)*pageSize);
+    public List<java.util.Map<String,Object>> findLayersByPage(Integer pageSize, Integer currentPage) {
+        List<java.util.Map<String,Object>> result = new ArrayList<>();
+        List<Layer> queryList = layerDao.findLayersByPage(pageSize,(currentPage -1)*pageSize);
+        queryList.forEach(layer -> {
+            try {
+                result.add(BeanUtil.Bean2Map(layer, Layer.class));
+            } catch (IllegalAccessException e) {
+                throw new BusinessException(e);
+            }
+        });
+        return result;
     }
 
     @Override

@@ -1,11 +1,15 @@
 package com.gis3c.ol.service.impl;
 
+import com.gis3c.common.bean.BeanUtil;
+import com.gis3c.common.exception.BusinessException;
 import com.gis3c.ol.dao.SourceDao;
+import com.gis3c.ol.entity.Map;
 import com.gis3c.ol.entity.Source;
 import com.gis3c.ol.service.SourceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -23,8 +27,17 @@ public class SourceServiceImpl implements SourceService {
     }
 
     @Override
-    public List<Source> findSourcesByPage(Integer pageSize, Integer currentPage) {
-        return sourceDao.findSourcesByPage(pageSize,(currentPage -1)*pageSize);
+    public List<java.util.Map<String,Object>> findSourcesByPage(Integer pageSize, Integer currentPage) {
+        List<java.util.Map<String,Object>> result = new ArrayList<>();
+        List<Source> queryList = sourceDao.findSourcesByPage(pageSize,(currentPage -1)*pageSize);
+        queryList.forEach(source -> {
+            try {
+                result.add(BeanUtil.Bean2Map(source, Source.class));
+            } catch (IllegalAccessException e) {
+                throw new BusinessException(e);
+            }
+        });
+        return result;
     }
 
     @Override

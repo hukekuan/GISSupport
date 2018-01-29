@@ -1,6 +1,8 @@
 package com.gis3c.spatial;
 
+import com.gis3c.common.bean.BeanUtil;
 import com.gis3c.ol.entity.Layer;
+import com.gis3c.ol.entity.Map;
 import com.gis3c.ol.entity.Source;
 import com.gis3c.ol.service.LayerService;
 import com.gis3c.ol.service.MapService;
@@ -61,8 +63,10 @@ public class App {
 //        System.out.println(FeatureUtilities.JavaBeans2Json(result));
 
 //        //地图接口
-//        Map map = mapService.findMapById("fc813a1f-6a31-4202-9419-8d125ba203c9");
-//        System.out.println(map.getLayers()[0][1]);
+//        Map map = mapService.findMapById("83c734de-c010-4153-bf68-d291d715ac55");
+        System.out.println(mapService.findMapsByPage(5,1));
+
+
 
 //        Map map = new Map();
 //        map.setMapId(UUID.randomUUID().toString());
@@ -86,16 +90,16 @@ public class App {
 //        System.out.println("插入成功");
 
         //图层接口
-        Layer layer = new Layer();
-        layer.setLayerName("streetmap");
-        layer.setAliasName("超图行政区图");
-        layer.setSource("d7cb5f6f-ee31-4a6e-b8fd-72603a066c2b");
-        layer.setType("ol.layer.Tile");
-        java.util.Map<String,Object> options = new HashMap<>();
-        options.put("projection","EPSG:4326");
-        layer.setOptions(options);
-        layerService.insertLayer(layer);
-        System.out.println("插入成功");
+//        Layer layer = new Layer();
+//        layer.setLayerName("streetmap");
+//        layer.setAliasName("超图行政区图");
+//        layer.setSource("d7cb5f6f-ee31-4a6e-b8fd-72603a066c2b");
+//        layer.setType("ol.layer.Tile");
+//        java.util.Map<String,Object> options = new HashMap<>();
+//        options.put("projection","EPSG:4326");
+//        layer.setOptions(options);
+//        layerService.insertLayer(layer);
+//        System.out.println("插入成功");
 
 
 //资源接口

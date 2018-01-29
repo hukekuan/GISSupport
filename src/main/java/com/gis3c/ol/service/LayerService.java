@@ -10,7 +10,7 @@ import java.util.List;
  */
 public interface LayerService {
     public List<Layer> findAllList();
-    public List<Layer> findLayersByPage(Integer pageSize,Integer currentPage);
+    public List<java.util.Map<String,Object>> findLayersByPage(Integer pageSize,Integer currentPage);
 
     public Layer findeLayerById(String layerId);
     public Layer findeLayerByName(String layerName);

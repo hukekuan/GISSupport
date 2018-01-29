@@ -8,7 +8,7 @@ import java.util.List;
  */
 public interface SourceService {
     public List<Source> findAllList();
-    public List<Source> findSourcesByPage(Integer pageSize,Integer currentPage);
+    public List<java.util.Map<String,Object>> findSourcesByPage(Integer pageSize,Integer currentPage);
     public Source findSourceById(String sourceId);
     public Source findSourceByName(String sourceName);
     public Integer insertSource(Source source);
