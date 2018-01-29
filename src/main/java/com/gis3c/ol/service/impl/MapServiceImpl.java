@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Created by hukekuan on 2017/12/14.
@@ -22,8 +23,8 @@ public class MapServiceImpl implements MapService {
     }
 
     @Override
-    public List<Map> findMapsByByPage(Integer pageSize,Integer currentPage) {
-        return mapDao.findMapsByByPage(pageSize,currentPage);
+    public List<Map> findMapsByPage(Integer pageSize,Integer currentPage) {
+        return mapDao.findMapsByPage(pageSize,(currentPage -1)*pageSize);
     }
 
     @Override
@@ -38,6 +39,7 @@ public class MapServiceImpl implements MapService {
 
     @Override
     public Integer insertMap(Map map) {
+        map.setMapId(UUID.randomUUID().toString());
         return mapDao.insertMap(map);
     }
 }

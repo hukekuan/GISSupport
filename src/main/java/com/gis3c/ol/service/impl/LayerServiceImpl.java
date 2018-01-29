@@ -6,6 +6,9 @@ import com.gis3c.ol.service.LayerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.UUID;
+
 /**
  * Created by hukekuan on 2017/12/15.
  */
@@ -13,6 +16,16 @@ import org.springframework.stereotype.Service;
 public class LayerServiceImpl implements LayerService {
     @Autowired
     private LayerDao layerDao;
+
+    @Override
+    public List<Layer> findAllList() {
+        return layerDao.findAllList();
+    }
+
+    @Override
+    public List<Layer> findLayersByPage(Integer pageSize, Integer currentPage) {
+        return layerDao.findLayersByPage(pageSize,(currentPage -1)*pageSize);
+    }
 
     @Override
     public Layer findeLayerById(String layerId) {
@@ -26,6 +39,7 @@ public class LayerServiceImpl implements LayerService {
 
     @Override
     public Integer insertLayer(Layer layer) {
+        layer.setLayerId(UUID.randomUUID().toString());
         return layerDao.insertLayer(layer);
     }
 }

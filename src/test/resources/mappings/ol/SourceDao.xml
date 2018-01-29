@@ -17,11 +17,32 @@
 		, description
     </sql>
 
-	<select id="findAllSources" resultMap="sourceResult">
+	<select id="findAllList" resultMap="sourceResult">
 		SELECT
 		<include refid="sourceColumns"/>
 		FROM c3gis_ol_source;
 	</select>
+	<select id="findSourcesByPage" resultMap="sourceResult">
+		SELECT
+		<include refid="sourceColumns"/>
+		FROM c3gis_ol_source
+		limit #{pageSize, javaType=java.lang.Integer}
+		offset #{currentPage, javaType=java.lang.Integer};
+	</select>
+
+	<select id="findSourceById" resultMap="sourceResult">
+		SELECT
+		<include refid="sourceColumns"/>
+		FROM c3gis_ol_source
+		WHERE sourceId = #{sourceId, javaType=java.lang.String};
+	</select>
+	<select id="findSourceByName" resultMap="sourceResult">
+		SELECT
+		<include refid="sourceColumns"/>
+		FROM c3gis_ol_source
+		WHERE sourceName = #{sourceName, javaType=java.lang.String};
+	</select>
+
 	<insert id="insertSource" parameterType="com.gis3c.ol.entity.Source">
 		INSERT INTO c3gis_ol_source(sourceId
 			, sourceName

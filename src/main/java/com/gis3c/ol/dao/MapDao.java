@@ -12,7 +12,7 @@ import java.util.List;
 @C3olDao
 public interface MapDao {
     public List<Map> findAllList();
-    public List<Map> findMapsByByPage(
+    public List<Map> findMapsByPage(
             @Param("pageSize") Integer pageSize,
             @Param("currentPage") Integer currentPage);
 

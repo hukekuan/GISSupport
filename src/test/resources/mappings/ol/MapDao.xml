@@ -33,7 +33,7 @@
 		FROM c3gis_ol_map;
 	</select>
 
-	<select id="findMapsByByPage" resultMap="mapResult">
+	<select id="findMapsByPage" resultMap="mapResult">
 		SELECT
 		<include refid="mapColumns"/>
 		FROM c3gis_ol_map

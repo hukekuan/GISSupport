@@ -1,6 +1,7 @@
 package com.gis3c.spatial;
 
 import com.gis3c.ol.entity.Layer;
+import com.gis3c.ol.entity.Source;
 import com.gis3c.ol.service.LayerService;
 import com.gis3c.ol.service.MapService;
 import com.gis3c.ol.service.SourceService;
@@ -9,6 +10,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -24,25 +27,25 @@ public class App {
         SourceService sourceService = context.getBean(SourceService.class);
         LayerService layerService = context.getBean(LayerService.class);
         MapService mapService = context.getBean(MapService.class);
-
         TestService testService = context.getBean(TestService.class);
 
-//        List<Source> sources = sourceService.findAllSources();
-//        System.out.println(sources.get(0).getParams());
+
+
+
+//        Source source = sourceService.findSourceByName("cva");
+//        System.out.println(source.getOptions());
 //
 //        Source newSource = new Source();
-//        newSource.setSourceId("44");
-//        newSource.setSourceName("44");
-//        newSource.setUrl("444");
+//        newSource.setSourceName("sdkqbigdata");
+//        newSource.setType("ol.source.TileArcGISRest");
 //        java.util.Map<String, Object> params = new HashMap<>();
-//        params.put("bar","444");
-//        params.put("active",true);
-//        params.put("balance",4.444);
-//        params.put("center",new Integer[]{1,2});
-//        newSource.setParams(params);
-//        newSource.setDescription("555");
+//        params.put("url","http://58.56.98.79:8003/ArcGIS/rest/services/sdkqbigdata1/MapServer");
+//
+//        newSource.setOptions(params);
+//        newSource.setDescription("山东省行政区图");
 //
 //        sourceService.insertSource(newSource);
+//        System.out.println("插入成功");
 
 
 //        List<Map> mapList = mapService.findMapsByByPage(10,0);
@@ -83,13 +86,15 @@ public class App {
 //        System.out.println("插入成功");
 
         //图层接口
-        Layer wmtsLayer = new Layer();
-        wmtsLayer.setLayerId(UUID.randomUUID().toString());
-        wmtsLayer.setLayerName("cva");
-        wmtsLayer.setAliasName("全国行政区图层");
-        wmtsLayer.setSource("b2729474-5988-410c-b6a0-8834b19d5832");
-        wmtsLayer.setType("ol.layer.Tile");
-        layerService.insertLayer(wmtsLayer);
+        Layer layer = new Layer();
+        layer.setLayerName("streetmap");
+        layer.setAliasName("超图行政区图");
+        layer.setSource("d7cb5f6f-ee31-4a6e-b8fd-72603a066c2b");
+        layer.setType("ol.layer.Tile");
+        java.util.Map<String,Object> options = new HashMap<>();
+        options.put("projection","EPSG:4326");
+        layer.setOptions(options);
+        layerService.insertLayer(layer);
         System.out.println("插入成功");
 
 

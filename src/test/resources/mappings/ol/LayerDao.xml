@@ -33,6 +33,18 @@
 		, description
     </sql>
 
+	<select id="findAllList" resultMap="layerResult">
+		SELECT
+		<include refid="layerColumns"/>
+		FROM c3gis_ol_layer;
+	</select>
+	<select id="findLayersByPage" resultMap="layerResult">
+		SELECT
+		<include refid="layerColumns"/>
+		FROM c3gis_ol_layer
+		limit #{pageSize, javaType=java.lang.Integer}
+		offset #{currentPage, javaType=java.lang.Integer};
+	</select>
 
 	<select id="findeLayerById" resultMap="layerResult">
 		SELECT
