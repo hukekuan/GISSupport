@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 /**
@@ -54,5 +55,10 @@ public class SourceServiceImpl implements SourceService {
     public Integer insertSource(Source source) {
         source.setSourceId(UUID.randomUUID().toString());
         return sourceDao.insertSource(source);
+    }
+
+    @Override
+    public Integer deleteSourcesById(Set<String> sourceIds) {
+        return sourceDao.deleteSourcesById(sourceIds);
     }
 }

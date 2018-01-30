@@ -90,4 +90,12 @@
 			, #{description}
 		);
 	</insert>
+
+	<delete id="deleteLayersById" parameterType="java.util.Set">
+		delete from c3gis_ol_layer
+		WHERE layerId in
+		<foreach collection ="collection" item="item" index="index" open="(" separator="," close=")">
+			#{item, javaType=java.lang.String}
+		</foreach>
+	</delete>
 </mapper>

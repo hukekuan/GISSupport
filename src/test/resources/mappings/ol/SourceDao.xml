@@ -57,4 +57,12 @@
 			, #{description}
 		);
 	</insert>
+
+	<delete id="deleteSourcesById" parameterType="java.util.Set">
+		delete from c3gis_ol_source
+		WHERE sourceId in
+		<foreach collection ="collection" item="item" index="index" open="(" separator="," close=")">
+			#{item, javaType=java.lang.String}
+		</foreach>
+	</delete>
 </mapper>

@@ -8,10 +8,7 @@ import com.gis3c.ol.service.MapService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * Created by hukekuan on 2017/12/14.
@@ -54,5 +51,10 @@ public class MapServiceImpl implements MapService {
     public Integer insertMap(Map map) {
         map.setMapId(UUID.randomUUID().toString());
         return mapDao.insertMap(map);
+    }
+
+    @Override
+    public Integer deleteMapsById(Set<String> mapIds) {
+        return mapDao.deleteMapsById(mapIds);
     }
 }

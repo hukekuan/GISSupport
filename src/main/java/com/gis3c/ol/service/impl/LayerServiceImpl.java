@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 /**
@@ -54,5 +55,10 @@ public class LayerServiceImpl implements LayerService {
     public Integer insertLayer(Layer layer) {
         layer.setLayerId(UUID.randomUUID().toString());
         return layerDao.insertLayer(layer);
+    }
+
+    @Override
+    public Integer deleteLayersById(Set<String> layerIds) {
+        return layerDao.deleteLayersById(layerIds);
     }
 }

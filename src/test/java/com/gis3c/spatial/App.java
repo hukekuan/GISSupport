@@ -12,9 +12,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * Created by hukekuan on 2017/12/14.
@@ -64,9 +62,13 @@ public class App {
 
 //        //地图接口
 //        Map map = mapService.findMapById("83c734de-c010-4153-bf68-d291d715ac55");
-        System.out.println(mapService.findMapsByPage(5,1));
 
+//        System.out.println(mapService.findMapsByPage(5,1));
 
+        Set<String> mapIds = new HashSet<>();
+        mapIds.add("e49eed64-433b-4637-832e-b7292a867ba1");
+        mapService.deleteMapsById(mapIds);
+        System.out.println("删除成功");
 
 //        Map map = new Map();
 //        map.setMapId(UUID.randomUUID().toString());

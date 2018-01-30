@@ -5,6 +5,7 @@ import com.gis3c.ol.entity.Layer;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by hukekuan on 2017/12/15.
@@ -20,4 +21,6 @@ public interface LayerDao {
     public Layer findeLayerByName(String layerName);
 
     public Integer insertLayer(Layer layer);
+
+    public Integer deleteLayersById(Set<String> layerIds);
 }
