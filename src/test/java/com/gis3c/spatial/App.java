@@ -30,7 +30,8 @@ public class App {
         TestService testService = context.getBean(TestService.class);
 
 
-
+        Layer layer = layerService.findeLayerById("d804360f-eb5f-4e29-94ab-fdafbf224e02");
+        System.out.println(layer.getExtent());
 
 //        Source source = sourceService.findSourceByName("cva");
 //        System.out.println(source.getOptions());
@@ -65,10 +66,10 @@ public class App {
 
 //        System.out.println(mapService.findMapsByPage(5,1));
 
-        Set<String> mapIds = new HashSet<>();
-        mapIds.add("e49eed64-433b-4637-832e-b7292a867ba1");
-        mapService.deleteMapsById(mapIds);
-        System.out.println("删除成功");
+//        Set<String> mapIds = new HashSet<>();
+//        mapIds.add("e49eed64-433b-4637-832e-b7292a867ba1");
+//        mapService.deleteMapsById(mapIds);
+//        System.out.println("删除成功");
 
 //        Map map = new Map();
 //        map.setMapId(UUID.randomUUID().toString());

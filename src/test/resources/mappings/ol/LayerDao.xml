@@ -10,8 +10,8 @@
 		<result property="visible" column="visible" />
 		<result property="extent" column="extent" javaType="ObjectArray"/>
 		<result property="zIndex" column="zIndex" />
-		<result property="maxResolution" column="minResolution" />
-		<result property="minResolution" column="maxResolution" />
+		<result property="maxResolution" column="maxResolution" />
+		<result property="minResolution" column="minResolution" />
 		<result property="type" column="type" />
 		<result property="options" column="options" javaType="ObjectJSON"/>
 		<result property="description" column="description" />

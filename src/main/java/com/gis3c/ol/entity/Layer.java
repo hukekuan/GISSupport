@@ -1,5 +1,6 @@
 package com.gis3c.ol.entity;
 
+import java.math.BigDecimal;
 import java.util.*;
 import java.util.Map;
 
@@ -13,10 +14,10 @@ public class Layer {
     private Double opacity = 1.0;
     private String source;
     private Boolean visible = Boolean.TRUE;
-    private Double[] extent;
+    private BigDecimal[] extent;
     private Integer zIndex = 0;
-    private Double maxResolution;
-    private Double minResolution;
+    private BigDecimal maxResolution;
+    private BigDecimal minResolution;
     private String type;
     private java.util.Map<String,Object> options;
     private String description;
@@ -69,11 +70,11 @@ public class Layer {
         this.visible = visible;
     }
 
-    public Double[] getExtent() {
+    public BigDecimal[] getExtent() {
         return extent;
     }
 
-    public void setExtent(Double[] extent) {
+    public void setExtent(BigDecimal[] extent) {
         this.extent = extent;
     }
 
@@ -85,19 +86,19 @@ public class Layer {
         this.zIndex = zIndex;
     }
 
-    public Double getMaxResolution() {
+    public BigDecimal getMaxResolution() {
         return maxResolution;
     }
 
-    public void setMaxResolution(Double maxResolution) {
+    public void setMaxResolution(BigDecimal maxResolution) {
         this.maxResolution = maxResolution;
     }
 
-    public Double getMinResolution() {
+    public BigDecimal getMinResolution() {
         return minResolution;
     }
 
-    public void setMinResolution(Double minResolution) {
+    public void setMinResolution(BigDecimal minResolution) {
         this.minResolution = minResolution;
     }
 
