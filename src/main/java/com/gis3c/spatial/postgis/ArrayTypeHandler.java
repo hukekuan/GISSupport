@@ -16,6 +16,8 @@ public class ArrayTypeHandler extends BaseTypeHandler<Object[]> {
     private static final String TYPE_NAME_BOOLEAN = "boolean";
     private static final String TYPE_NAME_INTEGER = "integer";
     private static final String TYPE_NAME_NUMERIC = "numeric";
+    private static final String TYPE_NAME_DECIMAL = "decimal";
+
 
 
     @Override
@@ -27,8 +29,10 @@ public class ArrayTypeHandler extends BaseTypeHandler<Object[]> {
             typeName = TYPE_NAME_VARCHAR;
         } else if (parameter instanceof Boolean[] || parameter instanceof Boolean[][]) {
             typeName = TYPE_NAME_BOOLEAN;
-        } else if (parameter instanceof Double[] || parameter instanceof Boolean[][]) {
+        } else if (parameter instanceof Double[] || parameter instanceof Double[][]) {
             typeName = TYPE_NAME_NUMERIC;
+        } else if(parameter instanceof BigDecimal[] || parameter instanceof BigDecimal[][]){
+            typeName = TYPE_NAME_DECIMAL;
         }
 
         if (typeName == null) {

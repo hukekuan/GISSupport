@@ -73,17 +73,19 @@ create table c3gis_ol_layer(
    layerId    varchar(50) not null PRIMARY KEY,
    layerName    varchar(50) not null,
    aliasName   varchar(50),
-   opacity  real,
+   opacity  numeric,
    source   varchar(50),
    visible    boolean,
-   extent decimal ARRAY[4],
+   extent numeric ARRAY[4],
    zIndex   integer,
-   minResolution    decimal,
-   maxResolution    decimal,
+   minResolution    numeric,
+   maxResolution    numeric,
    type   varchar(50),
    options  jsonb,
    description varchar(50)
 );
+
+ALTER TABLE 'c3gis_ol_layer' ALTER COLUMN opacity type numeric(1,5)
 
 --ArcGIS切片服务
 create table c3gis_ol_source_tilearcgisrest(
