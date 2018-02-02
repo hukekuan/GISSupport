@@ -4,6 +4,7 @@ import com.gis3c.common.persistence.annotation.C3olDao;
 import com.gis3c.ol.entity.Source;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
@@ -18,6 +19,7 @@ public interface SourceDao {
             @Param("currentPage") Integer currentPage);
     public Source findSourceById(String sourceId);
     public Source findSourceByName(String sourceName);
+    public List<Source> findSourceByType(String[] sourceTypes);
     public Integer insertSource(Source source);
 
     public Integer deleteSourcesById(Set<String> sourceIds);

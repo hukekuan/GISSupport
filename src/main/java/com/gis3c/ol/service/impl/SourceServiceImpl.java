@@ -9,10 +9,7 @@ import com.gis3c.ol.service.SourceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * Created by hukekuan on 2017/12/15.
@@ -49,6 +46,11 @@ public class SourceServiceImpl implements SourceService {
     @Override
     public Source findSourceByName(String sourceName) {
         return sourceDao.findSourceByName(sourceName);
+    }
+
+    @Override
+    public List<Source> findSourceByType(String[] sourceTypes) {
+        return sourceDao.findSourceByType(sourceTypes);
     }
 
     @Override

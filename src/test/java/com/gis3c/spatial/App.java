@@ -29,9 +29,35 @@ public class App {
         MapService mapService = context.getBean(MapService.class);
         TestService testService = context.getBean(TestService.class);
 
+        List<String> list = Arrays.asList(new String[]{"a","b","c"});
 
-        Layer layer = layerService.findeLayerById("d804360f-eb5f-4e29-94ab-fdafbf224e02");
-        System.out.println(layer.getExtent());
+        list.stream().forEach(u -> {
+            if("a".equals(u)){
+                System.out.println(u.toUpperCase());
+            }else {
+                System.out.println(u);
+            }
+        });
+
+
+
+//        List<Source> sourceList = sourceService.findSourceByType(new String[]{"a","b","c"});
+
+//        System.out.println(sourceList);
+//        sourceList.forEach(u -> System.out.println(u));
+
+//        String source = Optional
+//                .ofNullable(layerService.findeLayerById("d804360f"))
+//                .map(layer -> layer.getSource())
+//                .orElse("");
+//
+//        System.out.println("".equals(source));
+
+
+
+
+//        Layer layer = layerService.findeLayerById("d804360f-eb5f-4e29-94ab-fdafbf224e02");
+//        System.out.println(layer.getExtent());
 
 //        Source source = sourceService.findSourceByName("cva");
 //        System.out.println(source.getOptions());
