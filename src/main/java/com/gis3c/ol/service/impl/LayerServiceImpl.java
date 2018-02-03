@@ -58,6 +58,11 @@ public class LayerServiceImpl implements LayerService {
     }
 
     @Override
+    public Integer bindSource(String layerId, String sourceId) {
+        return layerDao.bindSource(layerId,sourceId);
+    }
+
+    @Override
     public Integer deleteLayersById(Set<String> layerIds) {
         return layerDao.deleteLayersById(layerIds);
     }

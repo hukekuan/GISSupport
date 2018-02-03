@@ -21,6 +21,8 @@ public interface LayerDao {
     public Layer findeLayerByName(String layerName);
 
     public Integer insertLayer(Layer layer);
-
+    public Integer bindSource(
+            @Param("layerId") String layerId,
+            @Param("sourceId") String sourceId);
     public Integer deleteLayersById(Set<String> layerIds);
 }

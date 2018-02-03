@@ -29,17 +29,8 @@ public class App {
         MapService mapService = context.getBean(MapService.class);
         TestService testService = context.getBean(TestService.class);
 
-        List<String> list = Arrays.asList(new String[]{"a","b","c"});
-
-        list.stream().forEach(u -> {
-            if("a".equals(u)){
-                System.out.println(u.toUpperCase());
-            }else {
-                System.out.println(u);
-            }
-        });
-
-
+        Integer result = layerService.bindSource("aabb842e-239e-491d-9c70-a2cec1f65886","d67de989-d351-4ba2-b3ac-021130ae19d4");
+        System.out.println(result);
 
 //        List<Source> sourceList = sourceService.findSourceByType(new String[]{"a","b","c"});
 

@@ -90,6 +90,11 @@
 			, #{description}
 		);
 	</insert>
+	<update id="bindSource">
+		UPDATE c3gis_ol_layer
+		SET source = #{sourceId, javaType=java.lang.String}
+		WHERE layerid = #{layerId, javaType=java.lang.String}
+	</update>
 
 	<delete id="deleteLayersById" parameterType="java.util.Set">
 		delete from c3gis_ol_layer

@@ -17,6 +17,6 @@ public interface LayerService {
     public Layer findeLayerByName(String layerName);
 
     public Integer insertLayer(Layer layer);
-
+    public Integer bindSource(String layerId,String sourceId);
     public Integer deleteLayersById(Set<String> layerIds);
 }
