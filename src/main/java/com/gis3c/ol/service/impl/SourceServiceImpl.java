@@ -3,7 +3,6 @@ package com.gis3c.ol.service.impl;
 import com.gis3c.common.bean.BeanUtil;
 import com.gis3c.common.exception.BusinessException;
 import com.gis3c.ol.dao.SourceDao;
-import com.gis3c.ol.entity.Map;
 import com.gis3c.ol.entity.Source;
 import com.gis3c.ol.service.SourceService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,8 +48,8 @@ public class SourceServiceImpl implements SourceService {
     }
 
     @Override
-    public List<Source> findSourceByType(String[] sourceTypes) {
-        return sourceDao.findSourceByType(sourceTypes);
+    public List<Source> findSourceByType(String[] sourceTypes,String projection) {
+        return sourceDao.findSourceByType(sourceTypes,projection);
     }
 
     @Override

@@ -14,7 +14,7 @@ public interface SourceService {
     public List<java.util.Map<String,Object>> findSourcesByPage(Integer pageSize,Integer currentPage);
     public Source findSourceById(String sourceId);
     public Source findSourceByName(String sourceName);
-    public List<Source> findSourceByType(String[] sourceTypes);
+    public List<Source> findSourceByType(String[] sourceTypes,String projection);
 
 
     public Integer insertSource(Source source);

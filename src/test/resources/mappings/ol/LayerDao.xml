@@ -12,6 +12,7 @@
 		<result property="zIndex" column="zIndex" />
 		<result property="maxResolution" column="maxResolution" />
 		<result property="minResolution" column="minResolution" />
+		<result property="projection" column="projection" />
 		<result property="type" column="type" />
 		<result property="options" column="options" javaType="ObjectJSON"/>
 		<result property="description" column="description" />
@@ -28,6 +29,7 @@
 		, zIndex
 		, minResolution
 		, maxResolution
+		, projection
 		, type
 		, options
 		, description
@@ -71,6 +73,7 @@
 			, zIndex
 			, minResolution
 			, maxResolution
+			, projection
 			, type
 			, options
 			, description
@@ -85,6 +88,7 @@
 			, #{zIndex}
 			, #{maxResolution}
 			, #{minResolution}
+			, #{projection}
 			, #{type}
 			, #{options, javaType=ObjectJSON}::jsonb
 			, #{description}

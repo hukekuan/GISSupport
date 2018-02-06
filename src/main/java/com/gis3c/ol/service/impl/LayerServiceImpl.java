@@ -1,10 +1,8 @@
 package com.gis3c.ol.service.impl;
-
 import com.gis3c.common.bean.BeanUtil;
 import com.gis3c.common.exception.BusinessException;
 import com.gis3c.ol.dao.LayerDao;
 import com.gis3c.ol.entity.Layer;
-import com.gis3c.ol.entity.Source;
 import com.gis3c.ol.service.LayerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

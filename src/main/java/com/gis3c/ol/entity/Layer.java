@@ -18,6 +18,7 @@ public class Layer {
     private Integer zIndex = 0;
     private BigDecimal maxResolution;
     private BigDecimal minResolution;
+    private String projection;
     private String type;
     private java.util.Map<String,Object> options;
     private String description;
@@ -148,5 +149,13 @@ public class Layer {
         }
 
         return sourceTypeArray;
+    }
+
+    public String getProjection() {
+        return projection;
+    }
+
+    public void setProjection(String projection) {
+        this.projection = projection;
     }
 }

@@ -135,6 +135,7 @@ create table c3gis_ol_source(
    sourceId    varchar(50) not null PRIMARY KEY,
    sourceName    varchar(50) not null,
    type    varchar(50) not null,
+   projection    varchar(50) not null,
    options   jsonb,
    description varchar(50)
 );

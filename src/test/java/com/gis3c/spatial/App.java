@@ -29,11 +29,14 @@ public class App {
         MapService mapService = context.getBean(MapService.class);
         TestService testService = context.getBean(TestService.class);
 
-        Integer result = layerService.bindSource("aabb842e-239e-491d-9c70-a2cec1f65886","d67de989-d351-4ba2-b3ac-021130ae19d4");
-        System.out.println(result);
+//        Integer result = layerService.bindSource("aabb842e-239e-491d-9c70-a2cec1f65886","d67de989-d351-4ba2-b3ac-021130ae19d4");
+//        System.out.println(result);
 
-//        List<Source> sourceList = sourceService.findSourceByType(new String[]{"a","b","c"});
+//        Layer queryLayer = layerService.findeLayerById("123");
+//        System.out.println(queryLayer);
 
+//        List<Source> sourceList = sourceService.findSourceByType(new String[]{"ol.source.WMTS"},"EPSG:4326");
+//
 //        System.out.println(sourceList);
 //        sourceList.forEach(u -> System.out.println(u));
 
@@ -110,16 +113,13 @@ public class App {
 //        System.out.println("插入成功");
 
         //图层接口
-//        Layer layer = new Layer();
-//        layer.setLayerName("streetmap");
-//        layer.setAliasName("超图行政区图");
-//        layer.setSource("d7cb5f6f-ee31-4a6e-b8fd-72603a066c2b");
-//        layer.setType("ol.layer.Tile");
-//        java.util.Map<String,Object> options = new HashMap<>();
-//        options.put("projection","EPSG:4326");
-//        layer.setOptions(options);
-//        layerService.insertLayer(layer);
-//        System.out.println("插入成功");
+        Layer layer = new Layer();
+        layer.setLayerName("sdkqbigdata");
+        layer.setAliasName("大屏行政区");
+        layer.setType("ol.layer.Tile");
+        layer.setProjection("EPSG:3857");
+        layerService.insertLayer(layer);
+        System.out.println("插入成功");
 
 
 //资源接口

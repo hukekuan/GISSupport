@@ -19,7 +19,9 @@ public interface SourceDao {
             @Param("currentPage") Integer currentPage);
     public Source findSourceById(String sourceId);
     public Source findSourceByName(String sourceName);
-    public List<Source> findSourceByType(String[] sourceTypes);
+    public List<Source> findSourceByType(
+            @Param("sourceTypes") String[] sourceTypes,
+            @Param("projection") String projection);
     public Integer insertSource(Source source);
 
     public Integer deleteSourcesById(Set<String> sourceIds);
