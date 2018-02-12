@@ -7,10 +7,7 @@ import com.gis3c.ol.service.LayerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * Created by hukekuan on 2017/12/15.
@@ -56,8 +53,8 @@ public class LayerServiceImpl implements LayerService {
     }
 
     @Override
-    public Integer bindSource(String layerId, String sourceId) {
-        return layerDao.bindSource(layerId,sourceId);
+    public Integer bindSource(String layerId, String sourceId, Map<String, Object> options) {
+        return layerDao.bindSource(layerId,sourceId,options);
     }
 
     @Override

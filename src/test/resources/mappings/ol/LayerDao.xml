@@ -94,9 +94,13 @@
 			, #{description}
 		);
 	</insert>
+
 	<update id="bindSource">
 		UPDATE c3gis_ol_layer
 		SET source = #{sourceId, javaType=java.lang.String}
+		<if test="options != null">
+			, options = #{options, javaType=ObjectJSON}::jsonb
+		</if>
 		WHERE layerid = #{layerId, javaType=java.lang.String}
 	</update>
 

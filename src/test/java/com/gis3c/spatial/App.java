@@ -29,6 +29,17 @@ public class App {
         MapService mapService = context.getBean(MapService.class);
         TestService testService = context.getBean(TestService.class);
 
+//        java.util.Map<String,Object> layerOptions = new HashMap<>();
+//        layerOptions.put("a","aaaaaaaa");
+//        layerOptions.put("b","bbbbbbbb");
+//        layerOptions.put("c","cccccccc");
+//        layerService.bindVectorSource(
+//                "9e3a9812-5921-45c9-9043-e52d81fff1bb",
+//                "4f21a864-3e81-4ee1-97b7-6d18a876b5c1",
+//                layerOptions);
+//        System.out.println("更新成功");
+
+
 //        Integer result = layerService.bindSource("aabb842e-239e-491d-9c70-a2cec1f65886","d67de989-d351-4ba2-b3ac-021130ae19d4");
 //        System.out.println(result);
 
@@ -113,13 +124,13 @@ public class App {
 //        System.out.println("插入成功");
 
         //图层接口
-        Layer layer = new Layer();
-        layer.setLayerName("sdkqbigdata");
-        layer.setAliasName("大屏行政区");
-        layer.setType("ol.layer.Tile");
-        layer.setProjection("EPSG:3857");
-        layerService.insertLayer(layer);
-        System.out.println("插入成功");
+//        Layer layer = new Layer();
+//        layer.setLayerName("sdkqbigdata");
+//        layer.setAliasName("大屏行政区");
+//        layer.setType("ol.layer.Tile");
+//        layer.setProjection("EPSG:3857");
+//        layerService.insertLayer(layer);
+//        System.out.println("插入成功");
 
 
 //资源接口
