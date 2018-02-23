@@ -7,12 +7,12 @@ public class Map {
     private String mapId;
     private String mapName;
     private java.util.Map<String,Object> view;
-    private String[][] controls;
+    private String[] controls;
     private Integer pixelRatio;
-    private String[][] interactions;
-    private String[][] layers;
+    private String[] interactions;
+    private String[] layers;
     private Boolean logo = Boolean.FALSE;
-    private String[][] overlays;
+    private String[] overlays;
     private String description;
 
     public String getMapId() {
@@ -39,11 +39,11 @@ public class Map {
         this.view = view;
     }
 
-    public String[][] getControls() {
+    public String[] getControls() {
         return controls;
     }
 
-    public void setControls(String[][] controls) {
+    public void setControls(String[] controls) {
         this.controls = controls;
     }
 
@@ -55,19 +55,19 @@ public class Map {
         this.pixelRatio = pixelRatio;
     }
 
-    public String[][] getInteractions() {
+    public String[] getInteractions() {
         return interactions;
     }
 
-    public void setInteractions(String[][] interactions) {
+    public void setInteractions(String[] interactions) {
         this.interactions = interactions;
     }
 
-    public String[][] getLayers() {
+    public String[] getLayers() {
         return layers;
     }
 
-    public void setLayers(String[][] layers) {
+    public void setLayers(String[] layers) {
         this.layers = layers;
     }
 
@@ -79,11 +79,11 @@ public class Map {
         this.logo = logo;
     }
 
-    public String[][] getOverlays() {
+    public String[] getOverlays() {
         return overlays;
     }
 
-    public void setOverlays(String[][] overlays) {
+    public void setOverlays(String[] overlays) {
         this.overlays = overlays;
     }
 

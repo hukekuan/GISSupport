@@ -22,4 +22,6 @@ public interface MapDao {
     public Integer insertMap(Map map);
 
     public Integer deleteMapsById(Set<String> mapIds);
+
+    public Integer bindLayer(@Param("mapId")String mapId, @Param("layerIds")String[] layerIds);
 }

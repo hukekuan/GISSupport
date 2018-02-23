@@ -12,7 +12,7 @@ import java.util.Set;
  */
 @C3olDao
 public interface LayerDao {
-    public List<Layer> findAllList();
+    public List<Layer> findLayerList();
     public List<Layer> findLayersByPage(
             @Param("pageSize") Integer pageSize,
             @Param("currentPage") Integer currentPage);

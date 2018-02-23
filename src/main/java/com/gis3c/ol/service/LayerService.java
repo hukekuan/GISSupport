@@ -10,7 +10,7 @@ import java.util.Set;
  * Created by hukekuan on 2017/12/15.
  */
 public interface LayerService {
-    public List<Layer> findAllList();
+    public List<Layer> findLayerList();
     public List<java.util.Map<String,Object>> findLayersByPage(Integer pageSize,Integer currentPage);
 
     public Layer findeLayerById(String layerId);

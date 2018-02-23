@@ -57,4 +57,9 @@ public class MapServiceImpl implements MapService {
     public Integer deleteMapsById(Set<String> mapIds) {
         return mapDao.deleteMapsById(mapIds);
     }
+
+    @Override
+    public Integer bindLayer(String mapId, String[] layerIds) {
+        return mapDao.bindLayer(mapId,layerIds);
+    }
 }

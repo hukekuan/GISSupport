@@ -114,14 +114,22 @@ public class App {
 //        view.put("zoom",9);
 //        map.setView(view);
 //        map.setLogo(false);
-//        map.setLayers(new String[][]{
-//            {"TileLayer","182a8b18-d26f-43da-9b3a-6f90af4825ed"},
-//            {"TileLayer","8c396460-9995-4387-8aa1-bb16c2595bba"},
-//            {"TileLayer","ad433664-3b2c-4b1b-b271-519b7f647a11"}
+//        map.setLayers(new String[]{
+//                "182a8b18-d26f-43da-9b3a-6f90af4825ed",
+//                "8c396460-9995-4387-8aa1-bb16c2595bba",
+//                "ad433664-3b2c-4b1b-b271-519b7f647a11"
 //        });
 //        mapService.insertMap(map);
 //
 //        System.out.println("插入成功");
+
+        mapService.bindLayer("15a67947-8dc7-46f4-bc06-5c2fc51609d9",new String[]{
+                "e8819b8e-9397-4609-8b23-9f18c9588d6b",
+                "9e3a9812-5921-45c9-9043-e52d81fff1bb",
+                "ea6444b3-710f-4516-af9a-aa8270276883",
+                "aabb842e-239e-491d-9c70-a2cec1f65886"
+        });
+        System.out.println("修改成功");
 
         //图层接口
 //        Layer layer = new Layer();

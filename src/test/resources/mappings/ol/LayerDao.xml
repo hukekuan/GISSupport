@@ -35,7 +35,7 @@
 		, description
     </sql>
 
-	<select id="findAllList" resultMap="layerResult">
+	<select id="findLayerList" resultMap="layerResult">
 		SELECT
 		<include refid="layerColumns"/>
 		FROM c3gis_ol_layer;

@@ -2,14 +2,13 @@
 create table c3gis_ol_map(
    mapid    varchar(50) not null PRIMARY KEY,
    mapname varchar(50) not null,
-   --view    varchar(50) not null,
    view    jsonb not null,
-   controls    varchar(50) [2][],
+   controls    varchar(50) [],
    pixelRatio     integer,
-   interactions varchar(50) [2][],
-   layers    varchar(50) [2][],
+   interactions varchar(50) [],
+   layers    varchar(50) [],
    logo    boolean,
-   overlays    varchar(50) [2][],
+   overlays    varchar(50) [],
    description varchar(50)
 );
 

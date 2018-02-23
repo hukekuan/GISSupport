@@ -84,4 +84,10 @@
 			#{item, javaType=java.lang.String}
 		</foreach>
 	</delete>
+
+	<update id="bindLayer">
+		UPDATE c3gis_ol_map
+		SET layers = #{layerIds, javaType=ObjectArray}
+		WHERE mapid = #{mapId, javaType=java.lang.String}
+	</update>
 </mapper>

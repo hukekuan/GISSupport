@@ -17,4 +17,6 @@ public interface MapService {
     public Integer insertMap(Map map);
 
     public Integer deleteMapsById(Set<String> mapIds);
+
+    public Integer bindLayer(String mapId,String[] layerIds);
 }
