@@ -4,13 +4,15 @@ package com.gis3c.ol.service;
 import com.gis3c.ol.entity.Layer;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 /**
  * Created by hukekuan on 2017/12/15.
  */
 public interface LayerService {
-    public List<Layer> findLayerList();
+    public List<Map<String,Object>> findLayerList();
+    public List<Layer> findSimpleLayerList();
     public List<java.util.Map<String,Object>> findLayersByPage(Integer pageSize,Integer currentPage);
 
     public Layer findeLayerById(String layerId);

@@ -29,6 +29,10 @@ public class App {
         MapService mapService = context.getBean(MapService.class);
         TestService testService = context.getBean(TestService.class);
 
+
+        List<Layer> layerList = layerService.findSimpleLayerList();
+        System.out.println(layerList);
+
 //        java.util.Map<String,Object> layerOptions = new HashMap<>();
 //        layerOptions.put("a","aaaaaaaa");
 //        layerOptions.put("b","bbbbbbbb");
@@ -123,13 +127,13 @@ public class App {
 //
 //        System.out.println("插入成功");
 
-        mapService.bindLayer("15a67947-8dc7-46f4-bc06-5c2fc51609d9",new String[]{
-                "e8819b8e-9397-4609-8b23-9f18c9588d6b",
-                "9e3a9812-5921-45c9-9043-e52d81fff1bb",
-                "ea6444b3-710f-4516-af9a-aa8270276883",
-                "aabb842e-239e-491d-9c70-a2cec1f65886"
-        });
-        System.out.println("修改成功");
+//        mapService.bindLayer("15a67947-8dc7-46f4-bc06-5c2fc51609d9",new String[]{
+//                "e8819b8e-9397-4609-8b23-9f18c9588d6b",
+//                "9e3a9812-5921-45c9-9043-e52d81fff1bb",
+//                "ea6444b3-710f-4516-af9a-aa8270276883",
+//                "aabb842e-239e-491d-9c70-a2cec1f65886"
+//        });
+//        System.out.println("修改成功");
 
         //图层接口
 //        Layer layer = new Layer();

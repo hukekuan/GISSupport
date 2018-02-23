@@ -2,6 +2,7 @@ package com.gis3c.ol.service.impl;
 import com.gis3c.common.bean.BeanUtil;
 import com.gis3c.common.exception.BusinessException;
 import com.gis3c.ol.dao.LayerDao;
+import com.gis3c.ol.dao.SourceDao;
 import com.gis3c.ol.entity.Layer;
 import com.gis3c.ol.service.LayerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,9 +18,30 @@ public class LayerServiceImpl implements LayerService {
     @Autowired
     private LayerDao layerDao;
 
+    @Autowired
+    private SourceDao sourceDao;
+
     @Override
-    public List<Layer> findAllList() {
-        return layerDao.findAllList();
+    public List<Map<String, Object>> findLayerList() {
+        List<Map<String, Object>> result = new ArrayList<>();
+        Map<String, Object> layerMap;
+        String sourceId;
+        List<Layer> layerList = layerDao.findLayerList();
+        for(int i = 0,len = layerList.size();i < len;i++){
+            layerMap = new HashMap<>();
+            layerMap.put("layer",layerList.get(i));
+            sourceId = layerList.get(i).getSource();
+            if(sourceId != null && !"".equals(sourceId)){
+                layerMap.put("source",sourceDao.findSourceById(sourceId));
+            }
+            result.add(layerMap);
+        }
+        return result;
+    }
+
+    @Override
+    public List<Layer> findSimpleLayerList() {
+        return layerDao.findLayerList();
     }
 
     @Override
