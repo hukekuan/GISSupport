@@ -4,6 +4,8 @@ import com.gis3c.common.exception.BusinessException;
 import com.gis3c.ol.dao.LayerDao;
 import com.gis3c.ol.dao.SourceDao;
 import com.gis3c.ol.entity.Layer;
+import com.gis3c.ol.entity.LayerSource;
+import com.gis3c.ol.entity.MapLayer;
 import com.gis3c.ol.service.LayerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,17 +24,17 @@ public class LayerServiceImpl implements LayerService {
     private SourceDao sourceDao;
 
     @Override
-    public List<Map<String, Object>> findLayerList() {
-        List<Map<String, Object>> result = new ArrayList<>();
-        Map<String, Object> layerMap;
+    public List<LayerSource> findLayerList() {
+        List<LayerSource> result = new ArrayList<>();
+        LayerSource layerMap;
         String sourceId;
         List<Layer> layerList = layerDao.findLayerList();
         for(int i = 0,len = layerList.size();i < len;i++){
-            layerMap = new HashMap<>();
-            layerMap.put("layer",layerList.get(i));
+            layerMap = new LayerSource();
+            layerMap.setLayer(layerList.get(i));
             sourceId = layerList.get(i).getSource();
             if(sourceId != null && !"".equals(sourceId)){
-                layerMap.put("source",sourceDao.findSourceById(sourceId));
+                layerMap.setSource(sourceDao.findSourceById(sourceId));
             }
             result.add(layerMap);
         }
@@ -40,8 +42,34 @@ public class LayerServiceImpl implements LayerService {
     }
 
     @Override
-    public List<Layer> findSimpleLayerList() {
-        return layerDao.findLayerList();
+    public List<MapLayer> findSimpleLayerList(List<String> layerIdList) {
+        List<MapLayer> result = new ArrayList<>();
+        List<Layer> layerList = layerDao.findLayerList();
+        MapLayer mapLayer;
+        Layer queryLayer;
+        if(layerIdList != null && layerIdList.size() > 0){
+            for(String layerId : layerIdList){
+                mapLayer = new MapLayer();
+                queryLayer = layerList.stream()
+                        .filter(layer -> layer.getLayerId().equals(layerId))
+                        .findFirst()
+                        .orElse(null);
+                if(queryLayer != null){
+                    mapLayer.setLayer(queryLayer);
+                    mapLayer.setBinded(true);
+                    result.add(mapLayer);
+
+                    layerList.remove(queryLayer);
+                }
+            }
+        }
+        for(Layer layer : layerList){
+            mapLayer = new MapLayer();
+            mapLayer.setLayer(layer);
+            result.add(mapLayer);
+        }
+
+        return result;
     }
 
     @Override

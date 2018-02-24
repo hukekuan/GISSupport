@@ -1,9 +1,8 @@
 package com.gis3c.spatial;
 
 import com.gis3c.common.bean.BeanUtil;
-import com.gis3c.ol.entity.Layer;
+import com.gis3c.ol.entity.*;
 import com.gis3c.ol.entity.Map;
-import com.gis3c.ol.entity.Source;
 import com.gis3c.ol.service.LayerService;
 import com.gis3c.ol.service.MapService;
 import com.gis3c.ol.service.SourceService;
@@ -30,8 +29,37 @@ public class App {
         TestService testService = context.getBean(TestService.class);
 
 
-        List<Layer> layerList = layerService.findSimpleLayerList();
-        System.out.println(layerList);
+        List<String> layerIdList = new ArrayList<>(Arrays.asList(new String[]{
+                "a2d69fcd-fa4a-4fe5-8696-ae3e30042126",
+                "aabb842e-239e-491d-9c70-a2cec1f65886"
+        }));
+        List<MapLayer> result = layerService.findSimpleLayerList(layerIdList);
+        System.out.println(result.size());
+        System.out.println(result.get(0).getLayer().getLayerId());
+        System.out.println(result.get(1).getLayer().getLayerId());
+
+
+//        String result = testList.stream().filter(test-> "2".equals(test)).findFirst().orElse(null);
+//        System.out.println(result);
+//        System.out.println(testList);
+//        System.out.println(testList.get(0));
+//        testList.remove(0);
+//        System.out.println(testList);
+//        System.out.println(testList.get(0));
+
+
+
+
+
+
+
+
+
+//        List<LayerSource> layerSources = layerService.findLayerList();
+//        System.out.println(layerSources.get(0));
+
+//        List<MapLayer> layerList = layerService.findSimpleLayerList("e8819b8e-9397-4609-8b23-9f18c9588d6b");
+//        System.out.println(layerList.get(2).getBinded());
 
 //        java.util.Map<String,Object> layerOptions = new HashMap<>();
 //        layerOptions.put("a","aaaaaaaa");
