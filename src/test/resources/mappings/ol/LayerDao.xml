@@ -55,6 +55,17 @@
 		WHERE layerId = #{layerId, javaType=java.lang.String};
 	</select>
 
+	<select id="findLayerByIds" resultMap="layerResult">
+		SELECT
+		<include refid="layerColumns"/>
+		FROM c3gis_ol_layer
+		WHERE layerId IN
+		<foreach collection ="array" item="item" index="index" open="(" separator="," close=")">
+			#{item, javaType=java.lang.String}
+		</foreach>
+		;
+	</select>
+
 	<select id="findeLayerByName" resultMap="layerResult">
 		SELECT
 		<include refid="layerColumns"/>

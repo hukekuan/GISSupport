@@ -12,6 +12,8 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.io.IOException;
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Created by hukekuan on 2017/12/14.
@@ -28,15 +30,19 @@ public class App {
         MapService mapService = context.getBean(MapService.class);
         TestService testService = context.getBean(TestService.class);
 
+        List<LayerSource> layerSources
+                = layerService.findLayerByIds(new String[]{"aabb842e-239e-491d-9c70-a2cec1f65886"});
 
-        List<String> layerIdList = new ArrayList<>(Arrays.asList(new String[]{
-                "a2d69fcd-fa4a-4fe5-8696-ae3e30042126",
-                "aabb842e-239e-491d-9c70-a2cec1f65886"
-        }));
-        List<MapLayer> result = layerService.findSimpleLayerList(layerIdList);
-        System.out.println(result.size());
-        System.out.println(result.get(0).getLayer().getLayerId());
-        System.out.println(result.get(1).getLayer().getLayerId());
+        System.out.println(layerSources);
+
+//        List<String> layerIdList = new ArrayList<>(Arrays.asList(new String[]{
+//                "a2d69fcd-fa4a-4fe5-8696-ae3e30042126",
+//                "aabb842e-239e-491d-9c70-a2cec1f65886"
+//        }));
+//        List<MapLayer> result = layerService.findSimpleLayerList(layerIdList);
+//        System.out.println(result.size());
+//        System.out.println(result.get(0).getLayer().getLayerId());
+//        System.out.println(result.get(1).getLayer().getLayerId());
 
 
 //        String result = testList.stream().filter(test-> "2".equals(test)).findFirst().orElse(null);

@@ -97,6 +97,34 @@ public class LayerServiceImpl implements LayerService {
     }
 
     @Override
+    public List<LayerSource> findLayerByIds(String[] layerIds) {
+        List<LayerSource> result = new ArrayList<>();
+        if(layerIds != null){
+            List<Layer> layerList = layerDao.findLayerByIds(layerIds);
+            Layer queryLayer;
+            LayerSource layerSource;
+            String sourceId;
+            for(String layerId : layerIds){
+                queryLayer = layerList
+                        .stream()
+                        .filter(layer -> layer.getLayerId().equals(layerId))
+                        .findFirst()
+                        .orElse(null);
+                if(queryLayer != null){
+                    layerSource = new LayerSource();
+                    layerSource.setLayer(queryLayer);
+                    sourceId = queryLayer.getSource();
+                    layerSource.setSource(sourceDao.findSourceById(sourceId));
+
+                    result.add(layerSource);
+                }
+            }
+        }
+
+        return result;
+    }
+
+    @Override
     public Integer insertLayer(Layer layer) {
         layer.setLayerId(UUID.randomUUID().toString());
         return layerDao.insertLayer(layer);
