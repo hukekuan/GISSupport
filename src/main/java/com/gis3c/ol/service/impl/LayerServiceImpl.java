@@ -42,34 +42,8 @@ public class LayerServiceImpl implements LayerService {
     }
 
     @Override
-    public List<MapLayer> findSimpleLayerList(List<String> layerIdList) {
-        List<MapLayer> result = new ArrayList<>();
-        List<Layer> layerList = layerDao.findLayerList();
-        MapLayer mapLayer;
-        Layer queryLayer;
-        if(layerIdList != null && layerIdList.size() > 0){
-            for(String layerId : layerIdList){
-                mapLayer = new MapLayer();
-                queryLayer = layerList.stream()
-                        .filter(layer -> layer.getLayerId().equals(layerId))
-                        .findFirst()
-                        .orElse(null);
-                if(queryLayer != null){
-                    mapLayer.setLayer(queryLayer);
-                    mapLayer.setBinded(true);
-                    result.add(mapLayer);
-
-                    layerList.remove(queryLayer);
-                }
-            }
-        }
-        for(Layer layer : layerList){
-            mapLayer = new MapLayer();
-            mapLayer.setLayer(layer);
-            result.add(mapLayer);
-        }
-
-        return result;
+    public List<Layer> findSimpleLayerList() {
+        return layerDao.findLayerList();
     }
 
     @Override

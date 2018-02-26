@@ -17,10 +17,9 @@ public interface LayerService {
 
     /**
      * 获取地图中需要设置的图层列表
-     * @param layerIdList 地图中已加入的图层编号
-     * @return 在图层列表基础上新增已添加标记
+     * @return
      */
-    public List<MapLayer> findSimpleLayerList(List<String> layerIdList);
+    public List<Layer> findSimpleLayerList();
     public List<java.util.Map<String,Object>> findLayersByPage(Integer pageSize,Integer currentPage);
 
     public Layer findeLayerById(String layerId);
