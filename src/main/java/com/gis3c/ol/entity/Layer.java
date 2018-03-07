@@ -131,14 +131,22 @@ public class Layer {
         String[] sourceTypeArray = null;
         switch (this.getType()){
             case "ol.layer.Tile":
-                sourceTypeArray = new String[]{"ol.source.TileSuperMapRest","ol.source.WMTS","ol.source.TileArcGISRest"};
+                sourceTypeArray = new String[]{
+                    "ol.source.TileSuperMapRest",
+                    "ol.source.WMTS",
+                    "ol.source.TileArcGISRest"
+                };
                 break;
             case "ol.layer.Image":
                 sourceTypeArray = new String[]{"ol.source.Image"};
                 break;
             case "ol.layer.Vector":
             case "ol.layer.Heatmap":
-                sourceTypeArray = new String[]{"ol.source.Vector"};
+                sourceTypeArray = new String[]{
+                    "ol.source.Vector",
+                    "ol.supermap.FeatureService",
+                    "arcgis.FeatureService"
+                };
                 break;
             case "ol.layer.VectorTile":
                 sourceTypeArray = new String[]{"ol.source.VectorTile"};
