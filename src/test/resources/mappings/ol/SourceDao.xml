@@ -55,7 +55,9 @@
 		and projection = #{projection, javaType=java.lang.String}
 		ORDER BY sourceName;
 	</select>
-
+	<select id="findSourceCount" resultType="java.lang.Integer">
+		SELECT COUNT(1) FROM c3gis_ol_source;
+	</select>
 	<insert id="insertSource" parameterType="com.gis3c.ol.entity.Source">
 		INSERT INTO c3gis_ol_source(sourceId
 			, sourceName

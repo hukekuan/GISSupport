@@ -22,6 +22,7 @@ public interface SourceDao {
     public List<Source> findSourceByType(
             @Param("sourceTypes") String[] sourceTypes,
             @Param("projection") String projection);
+    public Integer findSourceCount();
     public Integer insertSource(Source source);
 
     public Integer deleteSourcesById(Set<String> sourceIds);

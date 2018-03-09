@@ -20,7 +20,7 @@ public interface LayerDao {
     public Layer findeLayerById(String layerId);
     public Layer findeLayerByName(String layerName);
     public List<Layer> findLayerByIds(String[] layerIds);
-
+    public Integer findLayerCount();
     public Integer insertLayer(Layer layer);
 
     public Integer bindSource(

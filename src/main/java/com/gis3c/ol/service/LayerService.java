@@ -25,7 +25,7 @@ public interface LayerService {
     public Layer findeLayerById(String layerId);
     public Layer findeLayerByName(String layerName);
     public List<LayerSource> findLayerByIds(String[] layerIds);
-
+    public Integer findLayerCount();
     public Integer insertLayer(Layer layer);
     public Integer bindSource(String layerId,String sourceId,java.util.Map<String,Object> options);
     public Integer deleteLayersById(Set<String> layerIds);

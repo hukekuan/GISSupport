@@ -48,6 +48,11 @@ public class MapServiceImpl implements MapService {
     }
 
     @Override
+    public Integer findMapCount() {
+        return mapDao.findMapCount();
+    }
+
+    @Override
     public Integer insertMap(Map map) {
         map.setMapId(UUID.randomUUID().toString());
         return mapDao.insertMap(map);

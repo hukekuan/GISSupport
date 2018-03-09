@@ -15,7 +15,7 @@ public interface SourceService {
     public Source findSourceById(String sourceId);
     public Source findSourceByName(String sourceName);
     public List<Source> findSourceByType(String[] sourceTypes,String projection);
-
+    public Integer findSourceCount();
 
     public Integer insertSource(Source source);
 

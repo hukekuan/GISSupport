@@ -14,6 +14,7 @@ public interface MapService {
 
     public Map findMapById(String mapId);
     public Map findMapByName(String mapName);
+    public Integer findMapCount();
     public Integer insertMap(Map map);
 
     public Integer deleteMapsById(Set<String> mapIds);

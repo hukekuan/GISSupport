@@ -99,6 +99,11 @@ public class LayerServiceImpl implements LayerService {
     }
 
     @Override
+    public Integer findLayerCount() {
+        return layerDao.findLayerCount();
+    }
+
+    @Override
     public Integer insertLayer(Layer layer) {
         layer.setLayerId(UUID.randomUUID().toString());
         return layerDao.insertLayer(layer);

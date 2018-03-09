@@ -53,6 +53,9 @@
 		FROM c3gis_ol_map
 		WHERE mapname = #{mapName, javaType=java.lang.String};
 	</select>
+	<select id="findMapCount" resultType="java.lang.Integer">
+		SELECT COUNT(1) FROM c3gis_ol_map;
+	</select>
 	<insert id="insertMap" parameterType="com.gis3c.ol.entity.Map">
 		INSERT INTO c3gis_ol_map( mapid
 			, mapname

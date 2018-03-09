@@ -66,6 +66,10 @@
 		;
 	</select>
 
+	<select id="findLayerCount" resultType="java.lang.Integer">
+		SELECT COUNT(1) FROM c3gis_ol_layer;
+	</select>
+
 	<select id="findeLayerByName" resultMap="layerResult">
 		SELECT
 		<include refid="layerColumns"/>

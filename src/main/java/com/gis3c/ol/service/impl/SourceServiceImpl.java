@@ -53,6 +53,11 @@ public class SourceServiceImpl implements SourceService {
     }
 
     @Override
+    public Integer findSourceCount() {
+        return sourceDao.findSourceCount();
+    }
+
+    @Override
     public Integer insertSource(Source source) {
         source.setSourceId(UUID.randomUUID().toString());
         return sourceDao.insertSource(source);

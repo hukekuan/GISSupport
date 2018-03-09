@@ -30,11 +30,19 @@ public class App {
         MapService mapService = context.getBean(MapService.class);
         TestService testService = context.getBean(TestService.class);
 
-        List<LayerSource> layerSources
-                = layerService.findLayerByIds(new String[]{"aabb842e-239e-491d-9c70-a2cec1f65886"});
 
-        System.out.println(layerSources);
 
+
+
+
+
+
+
+
+
+
+//        List<LayerSource> layerSources
+//                = layerService.findLayerByIds(new String[]{"aabb842e-239e-491d-9c70-a2cec1f65886"});
 //        List<String> layerIdList = new ArrayList<>(Arrays.asList(new String[]{
 //                "a2d69fcd-fa4a-4fe5-8696-ae3e30042126",
 //                "aabb842e-239e-491d-9c70-a2cec1f65886"
@@ -52,13 +60,6 @@ public class App {
 //        testList.remove(0);
 //        System.out.println(testList);
 //        System.out.println(testList.get(0));
-
-
-
-
-
-
-
 
 
 //        List<LayerSource> layerSources = layerService.findLayerList();
@@ -97,8 +98,6 @@ public class App {
 //        System.out.println("".equals(source));
 
 
-
-
 //        Layer layer = layerService.findeLayerById("d804360f-eb5f-4e29-94ab-fdafbf224e02");
 //        System.out.println(layer.getExtent());
 
@@ -117,11 +116,9 @@ public class App {
 //        sourceService.insertSource(newSource);
 //        System.out.println("插入成功");
 
-
 //        List<Map> mapList = mapService.findMapsByByPage(10,0);
 //        Map map = mapService.findMapById("fc813a1f-6a31-4202-9419-8d125ba203c9");
 //        System.out.println(map);
-
 
 //        List<Test> result = testService.allList();
 //        Test test = result.get(0);
@@ -194,7 +191,6 @@ public class App {
 
 //        Wmts wmts = sourceService.findWmtsById("b2729474-5988-410c-b6a0-8834b19d5832");
 //        System.out.println(wmts.getUrl());
-
 
 
 // 视图接口
