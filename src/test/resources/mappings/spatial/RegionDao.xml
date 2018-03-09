@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gis3c.spatial.dao.RegionDao">
+	<resultMap id="regionResult" type="com.gis3c.spatial.entity.Region">
+		<result property="reginCode" column="code" />
+		<result property="regionName" column="name" />
+		<result property="geometry" column="geom" javaType="Geometry"/>
+	</resultMap>
+
+	<select id="findRegionByCode" resultMap="regionResult">
+		SELECT t.code, t.name, t.geom
+		FROM ${reginTable} t
+		where t.code = #{reginCode, javaType=java.lang.String};
+	</select>
+
+	<select id="findRgionCenterByCode" resultType="java.util.HashMap">
+		SELECT t.code, st_astext(st_centroid(t.geom)) as center
+		FROM ${reginTable} t
+		where t.code = #{reginCode, javaType=java.lang.String};
+	</select>
+
+	<select id="findAroundRegions" resultMap="regionResult">
+		select t1.code, t1.name
+		from ${reginTable} t1,(
+				select geom from ${reginTable} where code = #{reginCode, javaType=java.lang.String}
+			) t2
+		where ST_Disjoint(t2.geom,t1.geom) = false;
+	</select>
+</mapper>

@@ -6,6 +6,7 @@ import com.gis3c.ol.entity.Map;
 import com.gis3c.ol.service.LayerService;
 import com.gis3c.ol.service.MapService;
 import com.gis3c.ol.service.SourceService;
+import com.gis3c.spatial.entity.RegionType;
 import com.gis3c.spatial.service.TestService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -25,15 +26,19 @@ public class App {
     public static void main(String[] args) throws IllegalAccessException, IOException {
         ApplicationContext context = ApplicationInit();
 
-        SourceService sourceService = context.getBean(SourceService.class);
-        LayerService layerService = context.getBean(LayerService.class);
-        MapService mapService = context.getBean(MapService.class);
-        TestService testService = context.getBean(TestService.class);
+//        SourceService sourceService = context.getBean(SourceService.class);
+//        LayerService layerService = context.getBean(LayerService.class);
+//        MapService mapService = context.getBean(MapService.class);
+//        TestService testService = context.getBean(TestService.class);
 
 
+        String code = "370300";
+        System.out.println(code.substring(0,4));
 
-
-
+//        RegionType r1  = RegionType.CITY;
+//        RegionType r2  = RegionType.CITY;
+//
+//        System.out.println(r1.ChildType().getName());
 
 
 

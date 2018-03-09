@@ -1,6 +1,7 @@
 package com.gis3c.spatial.common;
 
-import com.gis3c.spatial.entity.feature.BaseFeature;
+
+import com.gis3c.spatial.entity.BaseFeature;
 import org.geotools.data.DataUtilities;
 import org.geotools.data.simple.SimpleFeatureCollection;
 import org.geotools.geojson.feature.FeatureJSON;

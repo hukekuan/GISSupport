@@ -11,26 +11,23 @@ import java.util.Map;
 public interface RegionService {
     /**
      * 获取区域实体
-     * @param reginType
      * @param reginCode
      */
-    public Region findRegionByCode(String reginType, String reginCode);
+    public Region findRegionByCode(String reginCode);
 
     /**
      * 获取区域中心点
-     * @param reginType
      * @param reginCode
      * @return 中心点wkt字符串
      */
-    public String findRgionCenterByCode(String reginType, String reginCode);
+    public String findRgionCenterByCode(String reginCode);
 
     /**
      * 获取区域周边区域
-     * @param reginType
      * @param reginCode
      * @return
      */
-    public List<Region> findAroundRegions(String reginType, String reginCode);
+    public List<Region> findAroundRegions(String reginCode);
 
     /**
      * 获取区域内部的所有子区域
