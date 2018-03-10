@@ -6,6 +6,10 @@
 		<result property="regionName" column="name" />
 		<result property="geometry" column="geom" javaType="Geometry"/>
 	</resultMap>
+	<resultMap id="regionCenterResult" type="com.gis3c.spatial.entity.RegionCenter">
+		<result property="regionCode" column="code" jdbcType="VARCHAR"/>
+		<result property="center" column="center" jdbcType="VARCHAR"/>
+	</resultMap>
 
 	<select id="findRegionByCode" resultMap="regionResult">
 		SELECT t.code, t.name, t.geom
@@ -13,8 +17,8 @@
 		where t.code = #{reginCode, javaType=java.lang.String};
 	</select>
 
-	<select id="findRgionCenterByCode" resultType="java.util.HashMap">
-		SELECT t.code, st_astext(st_centroid(t.geom)) as center
+	<select id="findRgionCenterByCode" resultType="java.lang.String">
+		SELECT st_astext(st_centroid(t.geom))
 		FROM ${reginTable} t
 		where t.code = #{reginCode, javaType=java.lang.String};
 	</select>
@@ -25,5 +29,17 @@
 				select geom from ${reginTable} where code = #{reginCode, javaType=java.lang.String}
 			) t2
 		where ST_Disjoint(t2.geom,t1.geom) = false;
+	</select>
+
+	<select id="findRegionsByParentCode" resultMap="regionResult">
+		SELECT t.code, t.name, t.geom
+		FROM ${reginTable} t
+		where t.code like #{parentCode, javaType=java.lang.String} || '%';
+	</select>
+
+	<select id="findRegionCentersByParentCode" resultMap="regionCenterResult">
+		SELECT t.code, st_astext(st_centroid(t.geom)) AS center
+		FROM ${reginTable} t
+		where t.code like #{parentCode, javaType=java.lang.String} || '%';
 	</select>
 </mapper>

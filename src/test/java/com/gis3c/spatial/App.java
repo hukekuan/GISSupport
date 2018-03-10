@@ -6,8 +6,12 @@ import com.gis3c.ol.entity.Map;
 import com.gis3c.ol.service.LayerService;
 import com.gis3c.ol.service.MapService;
 import com.gis3c.ol.service.SourceService;
+import com.gis3c.spatial.common.FeatureUtilities;
+import com.gis3c.spatial.entity.Region;
 import com.gis3c.spatial.entity.RegionType;
+import com.gis3c.spatial.service.RegionService;
 import com.gis3c.spatial.service.TestService;
+import org.opengis.feature.simple.SimpleFeature;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -30,11 +34,15 @@ public class App {
 //        LayerService layerService = context.getBean(LayerService.class);
 //        MapService mapService = context.getBean(MapService.class);
 //        TestService testService = context.getBean(TestService.class);
+        RegionService regionService = context.getBean(RegionService.class);
 
-
-        String code = "370300";
-        System.out.println(code.substring(0,4));
-
+//        List<Region> regionList = regionService.findRegionsByParentCode("370000");
+//        String region = regionService.findRegionCentersByParentCode("370100");
+        System.out.println(regionService.findRegionCentersByParentCode("370100").get(0).getCenter());
+//
+//        List<SimpleFeature> featureList = FeatureUtilities.JavaBeans2Features(regionList);
+//
+//        System.out.println(FeatureUtilities.Features2GeoJSON(featureList));
 //        RegionType r1  = RegionType.CITY;
 //        RegionType r2  = RegionType.CITY;
 //

@@ -2,6 +2,7 @@ package com.gis3c.spatial.service.impl;
 
 import com.gis3c.spatial.dao.RegionDao;
 import com.gis3c.spatial.entity.Region;
+import com.gis3c.spatial.entity.RegionCenter;
 import com.gis3c.spatial.entity.RegionType;
 import com.gis3c.spatial.service.RegionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,7 +58,7 @@ public class RegionServiceImpl implements RegionService {
     }
 
     @Override
-    public List<Map<String, String>> findRegionCentersByParentCode(String parentCode) {
+    public List<RegionCenter> findRegionCentersByParentCode(String parentCode) {
         RegionType parentType = regionTableByCode(parentCode);
         RegionType regionType = parentType.ChildType();
         if (regionType == null) {

@@ -1,6 +1,7 @@
 package com.gis3c.spatial.service;
 
 import com.gis3c.spatial.entity.Region;
+import com.gis3c.spatial.entity.RegionCenter;
 
 import java.util.List;
 import java.util.Map;
@@ -41,5 +42,5 @@ public interface RegionService {
      * @param parentCode
      * @return
      */
-    public List<Map<String,String>> findRegionCentersByParentCode(String parentCode);
+    public List<RegionCenter> findRegionCentersByParentCode(String parentCode);
 }
