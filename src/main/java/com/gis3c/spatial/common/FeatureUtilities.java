@@ -43,7 +43,7 @@ public class FeatureUtilities {
      */
     public static <T extends BaseFeature> String JavaBean2Json(T t,String featureIndex)
             throws IOException {
-        SimpleFeature simpleFeature =t.javaBean2SimpleFeature("featureIndex");
+        SimpleFeature simpleFeature =t.javaBean2SimpleFeature(featureIndex);
         return Feature2Json(simpleFeature);
     }
 
