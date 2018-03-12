@@ -14,7 +14,7 @@ public interface RegionService {
      * 获取区域实体
      * @param reginCode
      */
-    public Region findRegionByCode(String reginCode);
+    public String findRegionByCode(String reginCode);
 
     /**
      * 获取区域中心点
@@ -28,14 +28,14 @@ public interface RegionService {
      * @param reginCode
      * @return
      */
-    public List<Region> findAroundRegions(String reginCode);
+    public String findAroundRegions(String reginCode);
 
     /**
      * 获取区域内部的所有子区域
      * @param parentCode
      * @return
      */
-    public List<Region> findRegionsByParentCode(String parentCode);
+    public String findRegionsByParentCode(String parentCode);
 
     /**
      * 获取子区域内部的所有子区域的中心点

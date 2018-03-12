@@ -1,5 +1,6 @@
 package com.gis3c.spatial.entity;
 
+import com.gis3c.common.exception.BusinessException;
 import com.vividsolutions.jts.geom.Geometry;
 import org.geotools.feature.simple.SimpleFeatureBuilder;
 import org.geotools.feature.simple.SimpleFeatureTypeBuilder;
@@ -55,11 +56,11 @@ public class BaseFeature {
      * @throws NullPointerException
      * @date 2017-07-10 下午6:39
      */
-    public SimpleFeatureType createFeatureType() throws NullPointerException{
+    public SimpleFeatureType createFeatureType() {
         SimpleFeatureTypeBuilder build = new SimpleFeatureTypeBuilder();
         SimpleFeatureType featureType=null;
         if(!geometryChecked()){
-            throw new NullPointerException("空间字段为空");
+            throw new BusinessException("空间字段为空");
         }
 
         CoordinateReferenceSystem crs = null;
@@ -77,28 +78,28 @@ public class BaseFeature {
     /**
      * @author hukekuan
      * @Description 生成SimpleFeature对象
-     * @param featureType,转换类对应的featureType
      * @param featureIndex,feature序列号
      * @return 对象转SimpleFeature
      * @throws IllegalArgumentException
      * @throws IllegalAccessException
      * @date 2017-07-10 下午7:10
      */
-    public SimpleFeature javaBean2SimpleFeature(SimpleFeatureType featureType, String featureIndex)
-            throws IllegalArgumentException, IllegalAccessException {
-        SimpleFeature simpleFeature = null;
-        if(featureType == null){
-            throw new IllegalArgumentException("featureType参数为空");
-        }
+    public SimpleFeature javaBean2SimpleFeature(String featureIndex) {
+        SimpleFeatureType featureType = this.createFeatureType();
         SimpleFeatureBuilder featureBuilder = new SimpleFeatureBuilder(featureType);
+
         List<Field> fields = this.AllFieldes();
         List<Object> objList = new ArrayList<>();
-        for (Field field : fields) {
-            field.setAccessible(true);
-            objList.add(field.get(this));
+        try {
+            for (Field field : fields) {
+                field.setAccessible(true);
+                objList.add(field.get(this));
+            }
+        } catch (IllegalAccessException e) {
+            throw new BusinessException("无访问权限");
         }
-        simpleFeature = featureBuilder.buildFeature(featureIndex, objList.toArray());
-        return simpleFeature;
+
+        return featureBuilder.buildFeature(featureIndex, objList.toArray());
     }
 
 

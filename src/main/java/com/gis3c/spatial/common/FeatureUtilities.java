@@ -2,6 +2,7 @@ package com.gis3c.spatial.common;
 
 
 import com.gis3c.spatial.entity.BaseFeature;
+import com.gis3c.spatial.entity.Region;
 import org.geotools.data.DataUtilities;
 import org.geotools.data.simple.SimpleFeatureCollection;
 import org.geotools.geojson.feature.FeatureJSON;
@@ -19,6 +20,34 @@ import java.util.List;
  */
 public class FeatureUtilities {
     /**
+     * SimpleFeature转GeoJSON字符串
+     * @param simpleFeature
+     * @return
+     */
+    public static String Feature2Json(SimpleFeature simpleFeature) throws IOException {
+        String result = null;
+        FeatureJSON fjson = new FeatureJSON();
+        StringWriter writer = new StringWriter();
+        fjson.writeFeature(simpleFeature,writer);
+        result = writer.toString();
+        return result;
+    }
+
+    /**
+     *
+     * @param t 继承于BaseFeature的实体类转换成GeoJSON字符串
+     * @param featureIndex
+     * @param <T>
+     * @return
+     * @throws IOException
+     */
+    public static <T extends BaseFeature> String JavaBean2Json(T t,String featureIndex)
+            throws IOException {
+        SimpleFeature simpleFeature =t.javaBean2SimpleFeature("featureIndex");
+        return Feature2Json(simpleFeature);
+    }
+
+    /**
      * @Description: 将java bean转换为Simple Feature
      * @param beansList
      * @return
@@ -30,9 +59,8 @@ public class FeatureUtilities {
             throw new NullPointerException("参数无效");
         }
         List<SimpleFeature> simpleFeatureList = new ArrayList<>();
-        SimpleFeatureType featureType = beansList.get(0).createFeatureType();
         for(int i = 0,len = beansList.size();i < len;i++){
-            simpleFeatureList.add(beansList.get(i).javaBean2SimpleFeature(featureType,Integer.toString(i)));
+            simpleFeatureList.add(beansList.get(i).javaBean2SimpleFeature(Integer.toString(i)));
         }
 
         return simpleFeatureList;

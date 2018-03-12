@@ -1,13 +1,18 @@
 package com.gis3c.spatial.service.impl;
 
+import com.gis3c.common.exception.BusinessException;
+import com.gis3c.spatial.common.FeatureUtilities;
 import com.gis3c.spatial.dao.RegionDao;
 import com.gis3c.spatial.entity.Region;
 import com.gis3c.spatial.entity.RegionCenter;
 import com.gis3c.spatial.entity.RegionType;
 import com.gis3c.spatial.service.RegionService;
+import org.opengis.feature.simple.SimpleFeature;
+import org.opengis.feature.simple.SimpleFeatureType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -20,11 +25,18 @@ public class RegionServiceImpl implements RegionService {
     private RegionDao regionDao;
 
     @Override
-    public Region findRegionByCode(String reginCode) {
-        return regionDao.findRegionByCode(
+    public String findRegionByCode(String reginCode) {
+        String regionJson = null;
+        Region queryRegion = regionDao.findRegionByCode(
                 regionTableByCode(reginCode).getName(),
                 reginCode
         );
+        try {
+            regionJson = FeatureUtilities.JavaBean2Json(queryRegion,"1");
+        } catch (IOException e) {
+            throw new BusinessException("Region实体转GeoJSON出错");
+        }
+        return regionJson;
     }
 
     @Override
@@ -36,25 +48,41 @@ public class RegionServiceImpl implements RegionService {
     }
 
     @Override
-    public List<Region> findAroundRegions(String reginCode) {
-        return regionDao.findAroundRegions(
+    public String findAroundRegions(String reginCode) {
+        String result = null;
+        List<Region> regionLsit = regionDao.findAroundRegions(
                 regionTableByCode(reginCode).getName(),
                 reginCode
         );
+        try {
+            result = FeatureUtilities.JavaBeans2Json(regionLsit);
+        } catch (IllegalAccessException | IOException e) {
+            throw new BusinessException("Region实体转GeoJSON出错");
+        }
+        return result;
     }
 
     @Override
-    public List<Region> findRegionsByParentCode(String parentCode) {
+    public String findRegionsByParentCode(String parentCode) {
+        String result = null;
+
         RegionType parentType = regionTableByCode(parentCode);
         RegionType regionType = parentType.ChildType();
         if (regionType == null) {
-            throw new IllegalArgumentException("新政区编号输入错误");
+            throw new BusinessException("新政区编号输入错误");
         }
 
-        return regionDao.findRegionsByParentCode(
+        List<Region> regionLsit = regionDao.findRegionsByParentCode(
                 regionType.getName(),
                 getlikeCode(parentCode)
         );
+
+        try {
+            result = FeatureUtilities.JavaBeans2Json(regionLsit);
+        } catch (IllegalAccessException | IOException e) {
+            throw new BusinessException("Region实体转GeoJSON出错");
+        }
+        return result;
     }
 
     @Override
