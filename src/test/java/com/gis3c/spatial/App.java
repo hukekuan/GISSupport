@@ -36,12 +36,9 @@ public class App {
 //        TestService testService = context.getBean(TestService.class);
         RegionService regionService = context.getBean(RegionService.class);
 
-        List<Region> regionList = regionService.findRegionsByParentCode("370300");
-
-        regionList.stream().forEach(region -> System.out.println(region.getRegionName() + "-->" + region.getReginCode()));
-
+//        List<Region> regionList = regionService.findRegionsByParentCode("370000");
 //        String region = regionService.findRegionCentersByParentCode("370100");
-//        System.out.println(regionService.findAroundRegions("370100").size());
+        System.out.println(regionService.findRegionCentersByParentCode("370100").get(0).getCenter());
 //
 //        List<SimpleFeature> featureList = FeatureUtilities.JavaBeans2Features(regionList);
 //
