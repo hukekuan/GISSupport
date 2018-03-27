@@ -36,9 +36,33 @@ public class App {
 //        TestService testService = context.getBean(TestService.class);
         RegionService regionService = context.getBean(RegionService.class);
 
+
+        System.out.println(3 & 2);
+
+//        System.out.println(a.compareTo(b));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //        List<Region> regionList = regionService.findRegionsByParentCode("370000");
 //        String region = regionService.findRegionCentersByParentCode("370100");
-        System.out.println(regionService.findRegionCentersByParentCode("370100").get(0).getCenter());
+//        System.out.println(regionService.findRegionCentersByParentCode("370100").get(0).getCenter());
 //
 //        List<SimpleFeature> featureList = FeatureUtilities.JavaBeans2Features(regionList);
 //

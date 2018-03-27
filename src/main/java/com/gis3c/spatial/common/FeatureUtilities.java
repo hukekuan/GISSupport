@@ -2,12 +2,10 @@ package com.gis3c.spatial.common;
 
 
 import com.gis3c.spatial.entity.BaseFeature;
-import com.gis3c.spatial.entity.Region;
 import org.geotools.data.DataUtilities;
 import org.geotools.data.simple.SimpleFeatureCollection;
 import org.geotools.geojson.feature.FeatureJSON;
 import org.opengis.feature.simple.SimpleFeature;
-import org.opengis.feature.simple.SimpleFeatureType;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -53,16 +51,13 @@ public class FeatureUtilities {
      * @return
      * @throws IllegalAccessException
      */
-    public static List<SimpleFeature> JavaBeans2Features(List<? extends BaseFeature> beansList)
-            throws IllegalAccessException {
-        if(beansList == null || beansList.size() == 0){
-            throw new NullPointerException("参数无效");
-        }
+    public static List<SimpleFeature> JavaBeans2Features(List<? extends BaseFeature> beansList) {
         List<SimpleFeature> simpleFeatureList = new ArrayList<>();
-        for(int i = 0,len = beansList.size();i < len;i++){
-            simpleFeatureList.add(beansList.get(i).javaBean2SimpleFeature(Integer.toString(i)));
+        if(beansList != null || beansList.size() != 0){
+            for(int i = 0,len = beansList.size();i < len;i++){
+                simpleFeatureList.add(beansList.get(i).javaBean2SimpleFeature(Integer.toString(i)));
+            }
         }
-
         return simpleFeatureList;
     }
 
@@ -124,6 +119,8 @@ public class FeatureUtilities {
             simpleFeatureCollection = Features2Collection(simpleFeatureList);
             fjson.writeFeatureCollection(simpleFeatureCollection, writer);
             result = writer.toString();
+        }else {
+            result="{'type': 'FeatureCollection', 'features': []}";
         }
 
         return result;
@@ -146,6 +143,8 @@ public class FeatureUtilities {
             writer = new StringWriter();
             fjson.writeFeatureCollection(featureCollection, writer);
             result = writer.toString();
+        }else {
+            result = "{'type': 'FeatureCollection', 'features': []}";
         }
         return result;
     }
