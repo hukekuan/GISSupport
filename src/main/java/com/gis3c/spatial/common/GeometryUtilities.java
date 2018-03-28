@@ -4,12 +4,17 @@ import com.vividsolutions.jts.geom.*;
 import com.vividsolutions.jts.io.ParseException;
 import com.vividsolutions.jts.io.WKTReader;
 import com.vividsolutions.jts.io.WKTWriter;
+import org.geotools.geometry.jts.JTS;
 import org.geotools.geometry.jts.JTSFactoryFinder;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.geotools.geometry.jts.ReferencedEnvelope;
 import org.geotools.referencing.crs.DefaultGeographicCRS;
+import org.opengis.referencing.FactoryException;
+import org.opengis.referencing.operation.MathTransform;
+import org.opengis.referencing.operation.TransformException;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -34,12 +39,12 @@ public class GeometryUtilities {
 
     /**
      * 根据经纬度生成Point
-     * @param x
-     * @param y
+     * @param lon 经度
+     * @param lat 维度
      * @return
      */
-    public static Point CreatePoint(double x,double y){
-        return geomFactory.createPoint(new Coordinate(x,y));
+    public static Point CreatePoint(double lon, double lat){
+        return geomFactory.createPoint(new Coordinate(lat, lon));
     }
 
     /**
@@ -311,5 +316,55 @@ public class GeometryUtilities {
     public static Geometry GetBoundaryFromGeometries(List<Geometry> geometryList){
         GeometryCollection gc = GeometryCollection(geometryList);
         return gc.getEnvelope();
+    }
+
+    /**
+     * 生成Buffer
+     * @param geometry
+     * @param distance
+     * @return
+     */
+    public Polygon CreateBuffer(Geometry geometry,Double distance){
+        Polygon bufferResult = null;
+        if(geometry == null || distance == null){
+            throw new IllegalArgumentException("参数输入有误");
+        }
+        bufferResult = (Polygon) geometry.buffer(distance, 100);
+
+        return bufferResult;
+    }
+
+    public Polygon CreateBufferByPoint(Double lon,Double lat,Double distance){
+        Point point = CreatePoint(lon,lat);
+        return CreateBuffer(point,distance);
+    }
+
+    /**
+     * 计算两个点之间的距离
+     * @param startPoint
+     * @param endPoint
+     * @return
+     * @throws FactoryException
+     * @throws IOException
+     */
+    public static Double PointDistance(Point startPoint,Point endPoint)
+            throws TransformException, FactoryException {
+        int sridValue;
+        if(startPoint == null || endPoint == null){
+            throw new IllegalArgumentException("参数输入有误");
+        }
+        sridValue = startPoint.getSRID();
+        if(sridValue != endPoint.getSRID()){
+            throw new IllegalArgumentException("坐标系不一致");
+        }
+        if(sridValue == 0){
+            sridValue = 4326;
+        }
+
+        return JTS.orthodromicDistance(
+                startPoint.getCoordinate(),
+                endPoint.getCoordinate(),
+                CRSUtilities.GetCRSFromSRID(String.valueOf(sridValue))
+        );
     }
 }

@@ -120,7 +120,7 @@ public class FeatureUtilities {
             fjson.writeFeatureCollection(simpleFeatureCollection, writer);
             result = writer.toString();
         }else {
-            result="{'type': 'FeatureCollection', 'features': []}";
+            result="{\"type\": \"FeatureCollection\", \"features\": []}";
         }
 
         return result;

@@ -7,11 +7,16 @@ import com.gis3c.ol.service.LayerService;
 import com.gis3c.ol.service.MapService;
 import com.gis3c.ol.service.SourceService;
 import com.gis3c.spatial.common.FeatureUtilities;
+import com.gis3c.spatial.common.GeometryUtilities;
 import com.gis3c.spatial.entity.Region;
 import com.gis3c.spatial.entity.RegionType;
 import com.gis3c.spatial.service.RegionService;
 import com.gis3c.spatial.service.TestService;
+import com.vividsolutions.jts.geom.Coordinate;
+import com.vividsolutions.jts.geom.Point;
 import org.opengis.feature.simple.SimpleFeature;
+import org.opengis.referencing.FactoryException;
+import org.opengis.referencing.operation.TransformException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -19,6 +24,7 @@ import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
 
 /**
  * Created by hukekuan on 2017/12/14.
@@ -30,34 +36,14 @@ public class App {
     public static void main(String[] args) throws IllegalAccessException, IOException {
         ApplicationContext context = ApplicationInit();
 
-//        SourceService sourceService = context.getBean(SourceService.class);
-//        LayerService layerService = context.getBean(LayerService.class);
-//        MapService mapService = context.getBean(MapService.class);
-//        TestService testService = context.getBean(TestService.class);
-        RegionService regionService = context.getBean(RegionService.class);
 
-
-        System.out.println(3 & 2);
-
-//        System.out.println(a.compareTo(b));
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        Point start = GeometryUtilities.CreatePoint(118.024444,36.802778);
+        Point end = GeometryUtilities.CreatePoint(118.027777,36.759166);
+        try {
+            System.out.println(GeometryUtilities.PointDistance(start,end));
+        } catch (TransformException | FactoryException e) {
+            e.printStackTrace();
+        }
 
 
 //        List<Region> regionList = regionService.findRegionsByParentCode("370000");

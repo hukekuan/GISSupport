@@ -102,9 +102,6 @@ public class BaseFeature {
         return featureBuilder.buildFeature(featureIndex, objList.toArray());
     }
 
-
-
-
 /***************************************************************************************************/
 
     /**

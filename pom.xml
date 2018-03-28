@@ -250,7 +250,7 @@
     </dependency>
     <dependency>
       <groupId>org.geotools</groupId>
-      <artifactId>gt-swing</artifactId>
+      <artifactId>gt-epsg-hsql</artifactId>
       <version>${geotools.version}</version>
     </dependency>
     <dependency>
