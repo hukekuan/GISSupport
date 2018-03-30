@@ -44,7 +44,7 @@ public class GeometryUtilities {
      * @return
      */
     public static Point CreatePoint(double lon, double lat){
-        return geomFactory.createPoint(new Coordinate(lat, lon));
+        return geomFactory.createPoint(new Coordinate(lon,lat));
     }
 
     /**
@@ -324,7 +324,7 @@ public class GeometryUtilities {
      * @param distance
      * @return
      */
-    public Polygon CreateBuffer(Geometry geometry,Double distance){
+    public static Polygon CreateBuffer(Geometry geometry,Double distance){
         Polygon bufferResult = null;
         if(geometry == null || distance == null){
             throw new IllegalArgumentException("参数输入有误");

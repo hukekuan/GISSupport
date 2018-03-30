@@ -2,16 +2,21 @@ package com.gis3c.spatial.common;
 
 
 import com.gis3c.spatial.entity.BaseFeature;
+import com.vividsolutions.jts.geom.Geometry;
 import org.geotools.data.DataUtilities;
 import org.geotools.data.simple.SimpleFeatureCollection;
+import org.geotools.factory.CommonFactoryFinder;
+import org.geotools.filter.text.cql2.CQL;
+import org.geotools.filter.text.cql2.CQLException;
 import org.geotools.geojson.feature.FeatureJSON;
 import org.opengis.feature.simple.SimpleFeature;
+import org.opengis.filter.Filter;
+import org.opengis.filter.FilterFactory2;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.StringWriter;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by hukekuan on 2018/1/16.
@@ -164,5 +169,35 @@ public class FeatureUtilities {
         result = (SimpleFeatureCollection) fjson.readFeatureCollection(new ByteArrayInputStream(geojsonStr.getBytes()));
 
         return result;
+    }
+
+    public static SimpleFeatureCollection FeatureCollectionFilter(
+            SimpleFeatureCollection featureCollection, Geometry geometry,String whereClause) throws CQLException {
+        SimpleFeatureCollection resultCollection = null;
+        if(featureCollection == null || featureCollection.size() == 0){
+            return featureCollection;
+        }
+        if(geometry == null && (whereClause == null || "".equals(whereClause))){
+            throw new IllegalArgumentException("参数输入有误");
+        }
+
+        FilterFactory2 filterFactory = CommonFactoryFinder.getFilterFactory2();
+        List<Filter> filterList = new ArrayList<>();
+        if(geometry != null){
+            if(geometry.getSRID() == 0){
+                geometry.setSRID(4326);
+            }
+            String geometryPropertyName = featureCollection.getSchema().getGeometryDescriptor().getLocalName();
+            filterList.add(filterFactory.intersects(filterFactory.property(geometryPropertyName), filterFactory.literal(geometry)));
+        }
+        if(whereClause != null && !"".equals(whereClause)){
+            filterList.add(CQL.toFilter(whereClause));
+        }
+        if(filterList.size() == 1){
+            resultCollection = featureCollection.subCollection(filterList.get(0));
+        }else if(filterList.size() == 2){
+            resultCollection = featureCollection.subCollection(filterFactory.and(filterList.get(0),filterList.get(1)));
+        }
+        return resultCollection;
     }
 }

@@ -37,13 +37,18 @@ public class App {
         ApplicationContext context = ApplicationInit();
 
 
-        Point start = GeometryUtilities.CreatePoint(118.024444,36.802778);
-        Point end = GeometryUtilities.CreatePoint(118.027777,36.759166);
-        try {
-            System.out.println(GeometryUtilities.PointDistance(start,end));
-        } catch (TransformException | FactoryException e) {
-            e.printStackTrace();
-        }
+        List<Double> data = new ArrayList<>(Arrays.asList(new Double[]{1.1,2.1,3.1}));
+        Double result = data.stream().max(Comparator.naturalOrder()).get();
+        System.out.println(result);
+
+
+//        Point start = GeometryUtilities.CreatePoint(118.024444,36.802778);
+//        Point end = GeometryUtilities.CreatePoint(118.027777,36.759166);
+//        try {
+//            System.out.println(GeometryUtilities.PointDistance(start,end));
+//        } catch (TransformException | FactoryException e) {
+//            e.printStackTrace();
+//        }
 
 
 //        List<Region> regionList = regionService.findRegionsByParentCode("370000");
