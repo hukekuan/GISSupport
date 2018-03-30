@@ -74,7 +74,15 @@
 			, #{description}
 		);
 	</insert>
-
+	<update id="updateSource" parameterType="com.gis3c.ol.entity.Source">
+		UPDATE c3gis_ol_source SET
+			sourceName = #{sourceName},
+			type = #{type},
+			projection = #{projection},
+			options = #{options, javaType=ObjectJSON}::jsonb,
+			description = #{description}
+		WHERE sourceId = #{sourceId};
+	</update>
 	<delete id="deleteSourcesById" parameterType="java.util.Set">
 		delete from c3gis_ol_source
 		WHERE sourceId in

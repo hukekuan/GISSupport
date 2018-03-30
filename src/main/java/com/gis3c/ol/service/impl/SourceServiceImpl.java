@@ -64,6 +64,11 @@ public class SourceServiceImpl implements SourceService {
     }
 
     @Override
+    public Integer updateSource(Source source) {
+        return sourceDao.updateSource(source);
+    }
+
+    @Override
     public Integer deleteSourcesById(Set<String> sourceIds) {
         return sourceDao.deleteSourcesById(sourceIds);
     }

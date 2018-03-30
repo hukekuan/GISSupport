@@ -18,6 +18,6 @@ public interface SourceService {
     public Integer findSourceCount();
 
     public Integer insertSource(Source source);
-
+    public Integer updateSource(Source source);
     public Integer deleteSourcesById(Set<String> sourceIds);
 }
