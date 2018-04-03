@@ -4,6 +4,7 @@ import com.gis3c.common.bean.BeanUtil;
 import com.gis3c.common.exception.BusinessException;
 import com.gis3c.ol.dao.SourceDao;
 import com.gis3c.ol.entity.Source;
+import com.gis3c.ol.entity.TestStation;
 import com.gis3c.ol.service.SourceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -71,5 +72,15 @@ public class SourceServiceImpl implements SourceService {
     @Override
     public Integer deleteSourcesById(Set<String> sourceIds) {
         return sourceDao.deleteSourcesById(sourceIds);
+    }
+
+    @Override
+    public Integer insertTestStation(TestStation testStation) {
+        return sourceDao.insertTestStation(testStation);
+    }
+
+    @Override
+    public List<TestStation> findTestStationList() {
+        return sourceDao.findTestStationList();
     }
 }

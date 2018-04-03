@@ -50,10 +50,12 @@
         <typeAlias type="com.vividsolutions.jts.geom.Geometry" alias="Geometry" />
         <typeAlias type="java.lang.Object" alias="ObjectArray" />
         <typeAlias type="java.util.Map" alias="ObjectJSON" />
+        <typeAlias type="com.gis3c.common.bean.IntEnum" alias="IntEnum" />
     </typeAliases>
     <typeHandlers>
         <typeHandler handler="com.gis3c.spatial.postgis.PostGISHandler" javaType="Geometry" />
         <typeHandler handler="com.gis3c.spatial.postgis.ArrayTypeHandler" javaType="ObjectArray" />
         <typeHandler handler="com.gis3c.spatial.postgis.JsonTypeHandler" javaType="ObjectJSON" />
+        <typeHandler handler="com.gis3c.spatial.postgis.IntEnumTypeHandler" javaType="IntEnum" />
     </typeHandlers>
 </configuration>

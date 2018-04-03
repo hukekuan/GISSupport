@@ -9,6 +9,12 @@
 		<result property="options" column="options" javaType="ObjectJSON"/>
 		<result property="description" column="description" />
 	</resultMap>
+
+	<resultMap id="testStationResult" type="com.gis3c.ol.entity.TestStation">
+		<result property="stationId" column="stationid" />
+		<result property="stationName" column="stationname" />
+		<result property="stationStatus" column="stationstatus" jdbcType="BIT" javaType="IntEnum"/>
+	</resultMap>
 	
     <sql id="sourceColumns">
 		sourceId
@@ -90,4 +96,18 @@
 			#{item, javaType=java.lang.String}
 		</foreach>
 	</delete>
+
+
+	<insert id="insertTestStation" parameterType="com.gis3c.ol.entity.TestStation">
+		INSERT INTO stationtest(stationid,stationname,stationstatus)
+		VALUES (
+			#{stationId},
+			#{stationName},
+			#{stationStatus,jdbcType=BIT,javaType=IntEnum}
+		);
+	</insert>
+	<select id="findTestStationList" resultMap="testStationResult">
+		SELECT stationid,stationname,stationstatus
+		FROM stationtest;
+	</select>
 </mapper>

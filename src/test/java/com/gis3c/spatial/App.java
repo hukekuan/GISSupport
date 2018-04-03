@@ -1,6 +1,7 @@
 package com.gis3c.spatial;
 
 import com.gis3c.common.bean.BeanUtil;
+import com.gis3c.common.bean.IntEnum;
 import com.gis3c.ol.entity.*;
 import com.gis3c.ol.entity.Map;
 import com.gis3c.ol.service.LayerService;
@@ -14,6 +15,7 @@ import com.gis3c.spatial.service.RegionService;
 import com.gis3c.spatial.service.TestService;
 import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.Point;
+import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 import org.opengis.feature.simple.SimpleFeature;
 import org.opengis.referencing.FactoryException;
 import org.opengis.referencing.operation.TransformException;
@@ -36,10 +38,26 @@ public class App {
     public static void main(String[] args) throws IllegalAccessException, IOException {
         ApplicationContext context = ApplicationInit();
 
+        IntEnum[] objs = StationStatus.class.getEnumConstants();
+        System.out.println(objs.length);
 
-        List<Double> data = new ArrayList<>(Arrays.asList(new Double[]{1.1,2.1,3.1}));
-        Double result = data.stream().max(Comparator.naturalOrder()).get();
-        System.out.println(result);
+//        SourceService sourceService = context.getBean(SourceService.class);
+//
+//        List<TestStation> testStationList = sourceService.findTestStationList();
+//        System.out.println(testStationList.get(0).getStationStatus());
+
+//        TestStation station = new TestStation();
+//        station.setStationId(2);
+//        station.setStationName("bbb");
+//        station.setStationStatus(StationStatus.ZC);
+//        sourceService.insertTestStation(station);
+
+
+//        System.out.println(stationStatus1.equals(stationStatus2));
+
+//        List<Double> data = new ArrayList<>(Arrays.asList(new Double[]{1.1,2.1,3.1}));
+//        Double result = data.stream().max(Comparator.naturalOrder()).get();
+//        System.out.println(result);
 
 
 //        Point start = GeometryUtilities.CreatePoint(118.024444,36.802778);

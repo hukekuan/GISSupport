@@ -1,7 +1,9 @@
 package com.gis3c.ol.service;
 
 import com.gis3c.ol.entity.Source;
+import com.gis3c.ol.entity.TestStation;
 
+import java.security.PublicKey;
 import java.util.Collection;
 import java.util.List;
 import java.util.Set;
@@ -20,4 +22,7 @@ public interface SourceService {
     public Integer insertSource(Source source);
     public Integer updateSource(Source source);
     public Integer deleteSourcesById(Set<String> sourceIds);
+
+    public Integer insertTestStation(TestStation testStation);
+    public List<TestStation> findTestStationList();
 }

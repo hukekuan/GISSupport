@@ -2,6 +2,7 @@ package com.gis3c.ol.dao;
 
 import com.gis3c.common.persistence.annotation.C3olDao;
 import com.gis3c.ol.entity.Source;
+import com.gis3c.ol.entity.TestStation;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.Collection;
@@ -26,4 +27,7 @@ public interface SourceDao {
     public Integer insertSource(Source source);
     public Integer updateSource(Source source);
     public Integer deleteSourcesById(Set<String> sourceIds);
+
+    public Integer insertTestStation(TestStation testStation);
+    public List<TestStation> findTestStationList();
 }
