@@ -38,8 +38,17 @@ public class App {
     public static void main(String[] args) throws IllegalAccessException, IOException {
         ApplicationContext context = ApplicationInit();
 
-        IntEnum[] objs = StationStatus.class.getEnumConstants();
-        System.out.println(objs.length);
+        Set<Integer> data = new HashSet<>();
+        data.add(1);
+        data.add(2);
+        data.add(3);
+
+        System.out.println(data.contains(1));
+
+
+
+//        IntEnum[] objs = StationStatus.class.getEnumConstants();
+//        System.out.println(objs.length);
 
 //        SourceService sourceService = context.getBean(SourceService.class);
 //

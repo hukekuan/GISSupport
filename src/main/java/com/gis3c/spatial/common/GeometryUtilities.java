@@ -48,6 +48,35 @@ public class GeometryUtilities {
     }
 
     /**
+     * 点生成折现
+     * @param coordinateArray
+     * @return
+     */
+    public static LineString CreateLineStringByCoordinates(Coordinate[] coordinateArray){
+        LineString lineString = null;
+        if(coordinateArray != null && coordinateArray.length > 1){
+            lineString =geomFactory.createLineString(coordinateArray);
+        }
+        return lineString;
+    }
+    /**
+     * 点生成折现
+     * @param points
+     * @return
+     */
+    public static LineString CreateLineStringByPoints(Point[] points){
+        LineString lineString = null;
+        if(points != null && points.length > 0){
+            Coordinate[] coordinateArray = new Coordinate[points.length];
+            for(int i = 0,len = points.length;i < len;i++){
+                coordinateArray[i] = points[i].getCoordinate();
+            }
+            lineString =CreateLineStringByCoordinates(coordinateArray);
+        }
+        return lineString;
+    }
+
+    /**
      * wkt转geometry
      * @param wktStr
      * @return
@@ -362,8 +391,8 @@ public class GeometryUtilities {
         }
 
         return JTS.orthodromicDistance(
-                startPoint.getCoordinate(),
-                endPoint.getCoordinate(),
+                new Coordinate(startPoint.getCoordinate().y,startPoint.getCoordinate().x),
+                new Coordinate(endPoint.getCoordinate().y,endPoint.getCoordinate().x),
                 CRSUtilities.GetCRSFromSRID(String.valueOf(sridValue))
         );
     }
