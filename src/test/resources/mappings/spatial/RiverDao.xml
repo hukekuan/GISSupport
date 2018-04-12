@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gis3c.spatial.dao.RiverDao">
+	<resultMap id="separatedRiverResult" type="com.gis3c.spatial.entity.SeparatedRiver">
+		<result property="riverCode" column="rivercode" />
+		<result property="riverName" column="rivername" />
+		<result property="stationCode" column="stationcod" />
+		<result property="stationName" column="stationnam" />
+		<result property="geometry" column="geom" javaType="Geometry"/>
+	</resultMap>
+
+	<select id="findRiversByStationCodes" resultMap="separatedRiverResult">
+		SELECT t.rivercode, t.rivername,t.stationcod,t.stationnam, t.geom
+		FROM separatedriver t
+		<choose>
+			<when test="stationCodes != null and stationCodes.size() > 0">
+				where t.stationcod in
+				<foreach collection ="stationCodes" item="item" index="index" open="(" separator="," close=")">
+					#{item, javaType=java.lang.String}
+				</foreach>
+			</when>
+			<otherwise>
+				where t.stationcod in ('-1')
+			</otherwise>
+		</choose>
+	</select>
+
+	<select id="findRiversByRiverCodes" resultMap="separatedRiverResult">
+		SELECT t.rivercode, t.rivername,t.stationcod,t.stationnam, t.geom
+		FROM separatedriver t
+		<choose>
+			<when test="riverCodes != null and riverCodes.size() > 0">
+				where t.rivercode in
+				<foreach collection ="riverCodes" item="item" index="index" open="(" separator="," close=")">
+					#{item, javaType=java.lang.String}
+				</foreach>
+			</when>
+			<otherwise>
+				where t.rivercode in ('-1')
+			</otherwise>
+		</choose>
+	</select>
+</mapper>

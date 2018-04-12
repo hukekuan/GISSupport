@@ -12,6 +12,7 @@ import com.gis3c.spatial.common.GeometryUtilities;
 import com.gis3c.spatial.entity.Region;
 import com.gis3c.spatial.entity.RegionType;
 import com.gis3c.spatial.service.RegionService;
+import com.gis3c.spatial.service.RiverService;
 import com.gis3c.spatial.service.TestService;
 import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.Point;
@@ -36,14 +37,12 @@ public class App {
         return new ClassPathXmlApplicationContext("classpath:spring-config.xml");
     }
     public static void main(String[] args) throws IllegalAccessException, IOException {
-        ApplicationContext context = ApplicationInit();
-
-        Set<Integer> data = new HashSet<>();
-        data.add(1);
-        data.add(2);
-        data.add(3);
-
-        System.out.println(data.contains(1));
+//        ApplicationContext context = ApplicationInit();
+//        RiverService riverService = context.getBean(RiverService.class);
+//
+//        String resilt = riverService.findRiversByRiverCodes(
+//                new HashSet<>(Arrays.asList(new String[]{"3783","3363"})));
+//        System.out.println(resilt);
 
 
 
