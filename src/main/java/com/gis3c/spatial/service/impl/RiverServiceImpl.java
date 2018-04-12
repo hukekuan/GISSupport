@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -21,10 +22,19 @@ public class RiverServiceImpl implements RiverService {
     private RiverDao riverDao;
 
     @Override
-    public String findRiversByStationCodes(Set<String> stationCodes) {
+    public String findRiversByStationCodes(Set<String> stationCodes,Map<String,String> sufaceStations) {
         String riverJson = null;
         List<SeparatedRiver> riverList
                 = riverDao.findRiversByStationCodes(stationCodes);
+        if(sufaceStations != null){
+            riverList.forEach(separatedRiver -> {
+                if(sufaceStations.keySet().contains(separatedRiver.getStationCode())){
+                    separatedRiver.setLevel(sufaceStations.get(separatedRiver.getStationCode()));
+                }else {
+                    separatedRiver.setLevel("--");
+                }
+            });
+        }
         try {
             riverJson = FeatureUtilities.JavaBeans2Json(riverList);
         } catch (IllegalAccessException | IOException e) {
@@ -34,10 +44,20 @@ public class RiverServiceImpl implements RiverService {
     }
 
     @Override
-    public String findRiversByRiverCodes(Set<String> riverCodes) {
+    public String findRiversByRiverCodes(Set<String> riverCodes,Map<String,String> sufaceStations) {
         String riverJson = null;
         List<SeparatedRiver> riverList
                 = riverDao.findRiversByRiverCodes(riverCodes);
+        if(sufaceStations != null){
+            riverList.forEach(separatedRiver -> {
+               if(separatedRiver.getStationCode() != null
+                       && sufaceStations.keySet().contains(separatedRiver.getStationCode())){
+                   separatedRiver.setLevel(sufaceStations.get(separatedRiver.getStationCode()));
+               }else {
+                   separatedRiver.setLevel("--");
+               }
+            });
+        }
         try {
             riverJson = FeatureUtilities.JavaBeans2Json(riverList);
         } catch (IllegalAccessException | IOException e) {
