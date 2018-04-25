@@ -3,6 +3,7 @@ package com.gis3c.spatial.service.impl;
 import com.gis3c.common.exception.BusinessException;
 import com.gis3c.spatial.common.FeatureUtilities;
 import com.gis3c.spatial.dao.RiverDao;
+import com.gis3c.spatial.entity.ModelRiver;
 import com.gis3c.spatial.entity.SeparatedRiver;
 import com.gis3c.spatial.service.RiverService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,6 +63,24 @@ public class RiverServiceImpl implements RiverService {
             riverJson = FeatureUtilities.JavaBeans2Json(riverList);
         } catch (IllegalAccessException | IOException e) {
             throw new BusinessException("River实体转GeoJSON出错");
+        }
+        return riverJson;
+    }
+
+    @Override
+    public List<ModelRiver> findModelRiverInfo() {
+        return riverDao.findModelRiverInfo();
+    }
+
+    @Override
+    public String findModelRiverByName(String riverName) {
+        String riverJson = null;
+        List<ModelRiver> queryRiver
+                = riverDao.findModelRiverByName(riverName);
+        try {
+            riverJson = FeatureUtilities.JavaBeans2Json(queryRiver);
+        } catch (IllegalAccessException | IOException e) {
+            throw new BusinessException("ModelRiver实体转GeoJSON出错");
         }
         return riverJson;
     }

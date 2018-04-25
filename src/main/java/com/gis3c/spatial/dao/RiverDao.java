@@ -1,10 +1,12 @@
 package com.gis3c.spatial.dao;
 
 import com.gis3c.common.persistence.annotation.C3SpatialDao;
+import com.gis3c.spatial.entity.ModelRiver;
 import com.gis3c.spatial.entity.SeparatedRiver;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -14,4 +16,7 @@ import java.util.Set;
 public interface RiverDao {
     public List<SeparatedRiver> findRiversByStationCodes(@Param("stationCodes") Set<String> stationCodes);
     public List<SeparatedRiver> findRiversByRiverCodes(@Param("riverCodes") Set<String> riverCodes);
+
+    public List<ModelRiver> findModelRiverInfo();
+    public List<ModelRiver> findModelRiverByName(@Param("riverName") String riverName);
 }

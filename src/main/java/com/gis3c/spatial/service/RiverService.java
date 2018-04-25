@@ -1,5 +1,8 @@
 package com.gis3c.spatial.service;
 
+import com.gis3c.spatial.entity.ModelRiver;
+
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -22,4 +25,17 @@ public interface RiverService {
      * @return
      */
     public String findRiversByRiverCodes(Set<String> riverCodes,Map<String,String> sufaceStations);
+
+    /**
+     * 获取500米分段河流河流名称和别名
+     * @return
+     */
+    public List<ModelRiver> findModelRiverInfo();
+
+    /**
+     * 根据河流名称获取500米分段河流GeoJSON数据
+     * @param riverName
+     * @return
+     */
+    public String findModelRiverByName(String riverName);
 }

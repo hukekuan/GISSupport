@@ -9,11 +9,13 @@ import com.gis3c.ol.service.MapService;
 import com.gis3c.ol.service.SourceService;
 import com.gis3c.spatial.common.FeatureUtilities;
 import com.gis3c.spatial.common.GeometryUtilities;
+import com.gis3c.spatial.entity.ModelRiver;
 import com.gis3c.spatial.entity.Region;
 import com.gis3c.spatial.entity.RegionType;
 import com.gis3c.spatial.service.RegionService;
 import com.gis3c.spatial.service.RiverService;
 import com.gis3c.spatial.service.TestService;
+import com.sun.corba.se.spi.ior.ObjectKey;
 import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.Point;
 import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
@@ -37,8 +39,15 @@ public class App {
         return new ClassPathXmlApplicationContext("classpath:spring-config.xml");
     }
     public static void main(String[] args) throws IllegalAccessException, IOException {
-//        ApplicationContext context = ApplicationInit();
-//        RiverService riverService = context.getBean(RiverService.class);
+        ApplicationContext context = ApplicationInit();
+        RiverService riverService = context.getBean(RiverService.class);
+
+        List<ModelRiver> riverInfo = riverService.findModelRiverInfo();
+        System.out.println(riverInfo);
+
+
+
+
 //
 //        String resilt = riverService.findRiversByRiverCodes(
 //                new HashSet<>(Arrays.asList(new String[]{"3783","3363"})));
